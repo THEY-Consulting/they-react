@@ -24,3 +24,5 @@ dist-ssr
 *.sw?
 .vimspector.json
 .vimspector.session
+
+*storybook.log
