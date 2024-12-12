@@ -17,6 +17,8 @@ Collection of modules for an easier React life
 
 ## Use in your own project
 
+See the [Storybook](https://react.they-code.de/) for a list of available UI components.
+
 ### Prerequisites
 
 - [React](https://react.dev/)
@@ -91,4 +93,5 @@ npm run dev
 
 ### Deployment
 
-TBD
+Storybook is automatically deployed to GitHub Pages when a new commit is pushed to the `main` branch.
+A GitHub action runs that builds and deploys the storybook to the `gh-pages` branch.
