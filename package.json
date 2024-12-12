@@ -1,6 +1,6 @@
 {
   "name": "@they-consulting/react",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Helper modules for an easier react life",
   "type": "module",
   "main": "dist/main.js",
@@ -27,7 +27,7 @@
   "bugs": {
     "url": "https://github.com/THEY-Consulting/they-react/issues"
   },
-  "homepage": "https://github.com/THEY-Consulting/they-react#readme",
+  "homepage": "https://react.they-code.de/",
   "peerDependencies": {
     "@emotion/react": "^11.13.3",
     "@emotion/styled": "^11.13.0",
