@@ -9,11 +9,15 @@ Collection of modules for an easier React life
   - [Usage](#usage)
 - [Modules](#modules)
   - [Clipboard](#clipboard)
+    - [useCopyToClipboard](#usecopytoclipboard)
     - [CopyToClipboardIconButton](#copytoclipboardiconbutton)
 - [Contributing](#contributing)
   - [Prerequisites](#prerequisites-1)
   - [Local Dev](#local-dev)
+  - [Adding new dependencies](#adding-new-dependencies)
   - [Deployment](#deployment)
+    - [NPM](#npm)
+    - [Docs](#docs)
 
 ## Use in your own project
 
@@ -52,6 +56,24 @@ const MyComponent = () => {
 
 ### Clipboard
 
+#### useCopyToClipboard
+
+A hook that copies a given value to the clipboard.
+
+```jsx
+import { useCopyToClipboard } from '@they-consulting/react';
+
+const MyComponent = () => {
+  const { copied, handleCopy } = useCopyToClipboard('Hello World!');
+
+  return (
+    <button onClick={handleCopy}>
+      {copied ? 'Copied' : 'Copy to clipboard'}
+    </button>
+  );
+}
+```
+
 #### CopyToClipboardIconButton
 
 A button that copies a given value to the clipboard.
@@ -68,8 +90,6 @@ const MyComponent = () => {
 }
 ```
 
-
-
 ## Contributing
 
 ### Prerequisites
@@ -77,7 +97,7 @@ const MyComponent = () => {
 - [nvm](https://github.com/nvm-sh/nvm) optional, recommended
 - [nodejs](https://nodejs.org/en) version 20.X
 
-### Local Dev / Storybook
+### Local Dev
 
 Install dependencies:
 
@@ -91,7 +111,21 @@ Start the Storybook server:
 npm run dev
 ```
 
+### Adding new dependencies
+
+If you add a new dependency, you need to decide if it should be bundled with the library or not.
+In case it should be bundled, add it to the `dependencies` in the `package.json`. 
+Otherwise, include it in both `devDependencies` and `peerDependencies` instead.
+
 ### Deployment
+
+#### NPM
+
+The package is automatically published to npm when a new release is created. 
+Before creating a new release, make sure to update the version in the `package.json`.
+We use [semantic versioning](https://semver.org/).
+
+#### Docs
 
 Storybook is automatically deployed to GitHub Pages when a new commit is pushed to the `main` branch.
 A GitHub action runs that builds and deploys the storybook to the `gh-pages` branch.
