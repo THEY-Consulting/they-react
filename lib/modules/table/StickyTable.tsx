@@ -1,8 +1,7 @@
-import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
 import TableContainer from '@mui/material/TableContainer';
 import TablePagination from '@mui/material/TablePagination';
-import { Alert } from '@mui/material';
+import { Alert, SxProps, Theme } from '@mui/material';
 import Box from '@mui/material/Box';
 import { TableColumns } from './types';
 import { Progress } from '../loading/Progress';
@@ -10,6 +9,8 @@ import { StickyTableHead } from './StickyTableHead';
 import { StickyTableBody } from './StickyTableBody';
 import { useState } from 'react';
 import { useCan } from '../auth/hooks';
+import { i18nTheyReact } from '../locales/i18n';
+import { I18nextProvider } from 'react-i18next';
 
 const ROWS_PER_PAGE_OPTIONS = [50, 100, 200];
 
@@ -17,12 +18,13 @@ type Props<T> = {
   entity?: string;
   data?: T[];
   columns: TableColumns<T>;
-  isPending: boolean;
+  isPending?: boolean;
   error?: Error | null;
   onView?: (row: T) => void;
   onAdd?: () => void;
   onEdit?: (row: T) => void;
   noEntriesMessage?: string;
+  sx?: SxProps<Theme>;
 };
 
 export const StickyTable = <T,>({
@@ -35,6 +37,7 @@ export const StickyTable = <T,>({
   onAdd,
   onEdit,
   noEntriesMessage,
+  sx,
 }: Props<T>) => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(ROWS_PER_PAGE_OPTIONS[0]);
@@ -56,7 +59,7 @@ export const StickyTable = <T,>({
   if (error) {
     return (
       <Box mb={3}>
-        <Alert severity="error">Es ist leider ein Fehler aufgetreten: "{error.message}"</Alert>
+        <Alert severity="error">{error.message}</Alert>
       </Box>
     );
   }
@@ -68,8 +71,8 @@ export const StickyTable = <T,>({
     );
   }
   return (
-    <Paper sx={{ width: '100%', overflow: 'hidden' }}>
-      <TableContainer>
+    <I18nextProvider i18n={i18nTheyReact}>
+      <TableContainer sx={sx}>
         <Table stickyHeader aria-label="sticky table">
           <StickyTableHead
             columns={columns}
@@ -98,6 +101,6 @@ export const StickyTable = <T,>({
           onRowsPerPageChange={handleChangeRowsPerPage}
         />
       ) : null}
-    </Paper>
+    </I18nextProvider>
   );
 };

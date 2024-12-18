@@ -18,5 +18,10 @@
   },
   "table": {
     "empty": "Keine Einträge vorhanden"
+  },
+  "format": {
+    "date": "{{date, datetime(year: numeric; month: numeric; day: numeric)}}",
+    "dateTime": "{{date, datetime(year: numeric; month: numeric; day: numeric; hour: numeric; minute: numeric)}} Uhr",
+    "currency": "{{value, currency(EUR)}}"
   }
 }

@@ -34,7 +34,7 @@ export const StickyTableBody = <T,>({
         <StyledTableRow tabIndex={-1} key={idx}>
           {columns.map((column) => (
             <TableCell key={column.key ?? column.name} align={column.align}>
-              {formatValue(getValue(row, column.name), column.format, column.empty)}
+              {formatValue(t, getValue(row, column.name), column.format, column.empty)}
             </TableCell>
           ))}
           {(onView || onEdit) && (

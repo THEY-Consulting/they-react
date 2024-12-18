@@ -1,14 +1,16 @@
-import i18n from 'i18next';
+import { createInstance } from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import enTranslation from './en/translation.json';
 import deTranslation from './de/translation.json';
 
-i18n.use(initReactI18next).init({
+export const i18nTheyReact = createInstance({
   fallbackLng: 'en',
   debug: true,
+
   interpolation: {
-    escapeValue: false, // React already does escaping
+    escapeValue: false, // not needed for react as it escapes by default
   },
+
   resources: {
     en: {
       translation: enTranslation,
@@ -19,4 +21,4 @@ i18n.use(initReactI18next).init({
   },
 });
 
-export const i18nTheyReact = i18n;
+i18nTheyReact.use(initReactI18next).init();
