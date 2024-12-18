@@ -12,11 +12,12 @@
     "dev": "npm run storybook",
     "build": "tsc -b ./tsconfig.lib.json && vite build",
     "lint": "eslint .",
-    "format": "prettier . --write",
+    "format": "prettier . --check",
     "preview": "vite preview",
     "prepublishOnly": "npm run build",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build -o docs"
+    "build-storybook": "storybook build -o docs",
+    "test-storybook": "test-storybook"
   },
   "repository": {
     "type": "git",
@@ -64,6 +65,7 @@
     "@storybook/react": "^8.4.7",
     "@storybook/react-vite": "^8.4.7",
     "@storybook/test": "^8.4.7",
+    "@storybook/test-runner": "^0.20.1",
     "@tanstack/react-query": "^5.62.7",
     "@types/lodash": "^4.17.13",
     "@types/node": "^22.10.2",
