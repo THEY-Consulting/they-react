@@ -18,5 +18,10 @@
   },
   "table": {
     "empty": "No data available"
+  },
+  "format": {
+    "date": "{{date, datetime(year: numeric; month: numeric; day: numeric)}}",
+    "dateTime": "{{date, datetime(year: numeric; month: numeric; day: numeric; hour: numeric; minute: numeric)}}",
+    "currency": "{{value, currency(USD)}}"
   }
 }
