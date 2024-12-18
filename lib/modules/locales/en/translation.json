@@ -9,9 +9,9 @@
     },
     "errors": {
       "required": "Required",
-      "invalidNumber":  "Invalid number",
+      "invalidNumber": "Invalid number",
       "invalidDate": "Invalid date",
-      "maxLength":  "Character limit is {{max}}",
+      "maxLength": "Character limit is {{max}}",
       "minLength": "Must be at least {{min}} characters",
       "invalid": "Invalid"
     }

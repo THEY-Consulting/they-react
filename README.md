@@ -46,10 +46,8 @@ Then you can use the components in your project:
 import { CopyToClipboardIconButton } from '@they-consulting/react';
 
 const MyComponent = () => {
-  return (
-    <CopyToClipboardIconButton value="Hello World!" />
-  );
-}
+  return <CopyToClipboardIconButton value="Hello World!" />;
+};
 ```
 
 ## Modules
@@ -66,12 +64,8 @@ import { useCopyToClipboard } from '@they-consulting/react';
 const MyComponent = () => {
   const { copied, handleCopy } = useCopyToClipboard('Hello World!');
 
-  return (
-    <button onClick={handleCopy}>
-      {copied ? 'Copied' : 'Copy to clipboard'}
-    </button>
-  );
-}
+  return <button onClick={handleCopy}>{copied ? 'Copied' : 'Copy to clipboard'}</button>;
+};
 ```
 
 #### CopyToClipboardIconButton
@@ -82,12 +76,8 @@ A button that copies a given value to the clipboard.
 import { CopyToClipboardIconButton } from '@they-consulting/react';
 
 const MyComponent = () => {
-  return (
-    <CopyToClipboardIconButton 
-            value="Hello World!" 
-    />
-  );
-}
+  return <CopyToClipboardIconButton value="Hello World!" />;
+};
 ```
 
 ## Contributing
@@ -114,14 +104,14 @@ npm run dev
 ### Adding new dependencies
 
 If you add a new dependency, you need to decide if it should be bundled with the library or not.
-In case it should be bundled, add it to the `dependencies` in the `package.json`. 
+In case it should be bundled, add it to the `dependencies` in the `package.json`.
 Otherwise, include it in both `devDependencies` and `peerDependencies` instead.
 
 ### Deployment
 
 #### NPM
 
-The package is automatically published to npm when a new release is created. 
+The package is automatically published to npm when a new release is created.
 Before creating a new release, make sure to update the version in the `package.json`.
 We use [semantic versioning](https://semver.org/).
 
