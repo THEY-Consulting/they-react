@@ -9,15 +9,20 @@ declare const _default: {
     },
     "errors": {
       "required": "Pflichtfeld",
-      "invalidNumber":  "Ungültige Zahl",
+      "invalidNumber": "Ungültige Zahl",
       "invalidDate": "Ungültiges Datum",
-      "maxLength":  "Maximal {{max}} Zeichen erlaubt",
+      "maxLength": "Maximal {{max}} Zeichen erlaubt",
       "minLength": "Mindestens {{min}} Zeichen benötigt",
       "invalid": "Ungültig"
     }
   },
   "table": {
     "empty": "Keine Einträge vorhanden"
+  },
+  "format": {
+    "date": "{{date, datetime(year: numeric; month: numeric; day: numeric)}}",
+    "dateTime": "{{date, datetime(year: numeric; month: numeric; day: numeric; hour: numeric; minute: numeric)}} Uhr",
+    "currency": "{{value, currency(EUR)}}"
   }
 }
 ;
