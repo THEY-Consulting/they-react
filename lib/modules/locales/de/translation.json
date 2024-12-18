@@ -9,9 +9,9 @@
     },
     "errors": {
       "required": "Pflichtfeld",
-      "invalidNumber":  "Ungültige Zahl",
+      "invalidNumber": "Ungültige Zahl",
       "invalidDate": "Ungültiges Datum",
-      "maxLength":  "Maximal {{max}} Zeichen erlaubt",
+      "maxLength": "Maximal {{max}} Zeichen erlaubt",
       "minLength": "Mindestens {{min}} Zeichen benötigt",
       "invalid": "Ungültig"
     }
