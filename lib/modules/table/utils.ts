@@ -14,7 +14,6 @@ export const formatValue = <T, P extends Path<T>>(
   format: TableColumnFormatter<T, P> | undefined,
   empty?: ReactNode
 ): ReactNode => {
-  console.log(t, value, format);
   if (value === null || value === undefined) {
     return empty ?? '-';
   }
