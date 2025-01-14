@@ -1,8 +1,4 @@
-import Table from '@mui/material/Table';
-import TableContainer from '@mui/material/TableContainer';
-import TablePagination from '@mui/material/TablePagination';
-import { Alert, SxProps, Theme } from '@mui/material';
-import Box from '@mui/material/Box';
+import { Alert, Box, SxProps, Table, TableContainer, TablePagination, Theme } from '@mui/material';
 import { TableColumns } from './types';
 import { Progress } from '../loading/Progress';
 import { StickyTableHead } from './StickyTableHead';

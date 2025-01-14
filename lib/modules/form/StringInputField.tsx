@@ -1,6 +1,6 @@
 import { FieldValues, useController } from 'react-hook-form';
 import { IconButton, InputAdornment, TextField } from '@mui/material';
-import ClearIcon from '@mui/icons-material/Clear';
+import { Clear as ClearIcon } from '@mui/icons-material';
 import { getErrorMessage, getRemainingCharacters, getRequiredLabel } from './helper';
 import { ReactNode, useMemo } from 'react';
 import { FormFieldBase } from './types';

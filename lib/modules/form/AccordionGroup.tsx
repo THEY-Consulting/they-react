@@ -1,5 +1,5 @@
 import { Accordion, AccordionDetails, AccordionSummary, Button, FormLabel, Typography } from '@mui/material';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { ExpandMore as ExpandMoreIcon } from '@mui/icons-material';
 import { FieldValues } from 'react-hook-form';
 import { FormGroup } from './types';
 import { DefaultGroup } from './DefaultGroup';

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import PetsIcon from '@mui/icons-material/Pets';
+import { Pets as PetsIcon } from '@mui/icons-material';
 import { CopyToClipboardIconButton } from '../../../lib/main';
 
 const meta = {
