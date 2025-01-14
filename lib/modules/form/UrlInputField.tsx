@@ -1,7 +1,7 @@
 import { FieldValues, useWatch } from 'react-hook-form';
 import { FormFieldBase } from './types';
 import { StringInputField } from './StringInputField';
-import PublicIcon from '@mui/icons-material/Public';
+import { Public as PublicIcon } from '@mui/icons-material';
 import { IconButton } from '@mui/material';
 
 type Props<T extends FieldValues> = FormFieldBase<T>;

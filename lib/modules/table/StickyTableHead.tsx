@@ -1,5 +1,5 @@
 import { IconButton, TableHead, TableRow } from '@mui/material';
-import AddIcon from '@mui/icons-material/Add';
+import { Add as AddIcon } from '@mui/icons-material';
 import { StyledTableCell } from './StyledTableCell';
 import { TableColumns } from './types';
 

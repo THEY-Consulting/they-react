@@ -1,9 +1,9 @@
-import { createInstance } from 'i18next';
+import { createInstance, i18n } from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import enTranslation from './en/translation.json';
 import deTranslation from './de/translation.json';
 
-export const i18nTheyReact = createInstance({
+export const i18nTheyReact: i18n = createInstance({
   fallbackLng: 'en',
   debug: true,
 

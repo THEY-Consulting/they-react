@@ -1,6 +1,6 @@
 import React from 'react';
 import { format } from 'date-fns';
-import Typography from '@mui/material/Typography';
+import { Typography } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 
 type FormMetadataProps = {

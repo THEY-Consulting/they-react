@@ -1,6 +1,5 @@
-import EditIcon from '@mui/icons-material/Edit';
 import { IconButton } from '@mui/material';
-import NavigateNextIcon from '@mui/icons-material/NavigateNext';
+import { Edit as EditIcon, NavigateNext as NavigateNextIcon } from '@mui/icons-material';
 
 type Props<T> = {
   row: T;

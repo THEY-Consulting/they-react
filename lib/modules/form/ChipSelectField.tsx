@@ -14,7 +14,7 @@ import {
 import { FieldValues, useController } from 'react-hook-form';
 import { FormFieldBase, InputFieldOptions } from './types';
 import { getErrorMessage, getOptionLabel, getRequiredLabel, isOptionGroup, toArrayValue } from './helper';
-import CancelIcon from '@mui/icons-material/Cancel';
+import { Cancel as CancelIcon } from '@mui/icons-material';
 import { ReactNode } from 'react';
 import { useError } from './ErrorProvider';
 import { useTranslation } from 'react-i18next';

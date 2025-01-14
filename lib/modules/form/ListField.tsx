@@ -3,8 +3,7 @@ import { FieldPath, FieldValues, Path, useController, useFieldArray } from 'reac
 import { RenderInputField } from './RenderInputField';
 import { Button, FormControl, FormHelperText, Grid, IconButton } from '@mui/material';
 import { getErrorMessage } from './helper';
-import AddIcon from '@mui/icons-material/Add';
-import DeleteIcon from '@mui/icons-material/Delete';
+import { Add as AddIcon, Delete as DeleteIcon } from '@mui/icons-material';
 import { Fragment, ReactNode, useCallback, useEffect } from 'react';
 import { cloneDeep } from 'lodash';
 import { DividerLabel } from './DividerLabel';
