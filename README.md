@@ -107,11 +107,12 @@ If you add a new dependency, you need to decide if it should be bundled with the
 In case it should be bundled, add it to the `dependencies` in the `package.json`.
 Otherwise, include it in both `devDependencies` and `peerDependencies` instead.
 Also make sure to include peer dependencies that should not be bundled to the externals in `vite.config.ts`.
-For this to work, the import source must be identical to the external entry: 
-```typescript
-import { Box } from '@mui/material' // this matches the external entry and will not be bundled
+For this to work, the import source must be identical to the external entry:
 
-import { Box } from '@mui/material/Box' // this doesn't match and will be bundled
+```typescript
+import { Box } from '@mui/material'; // this matches the external entry and will not be bundled
+
+import { Box } from '@mui/material/Box'; // this doesn't match and will be bundled
 ```
 
 ### Deployment
