@@ -1,4 +1,6 @@
 import { QueryFunctionContext, QueryKey } from '@tanstack/react-query';
+import './types';
+import { QueryMeta } from './types';
 
 /**
  * Unfortunately, TanStack does not directly expose the http status code.
@@ -19,11 +21,27 @@ export const isUnauthorizedError = ({ message }: Error) => message.includes('401
  * API and handling specific HTTP status codes errors.
  * Depending on the nature of the error the function throws different errors.
  * @param response Response object
+ * @param redirectToLocationIfUnauthorized If set, redirects to the given URL on 401 Unauthorized
  */
-export const checkResponseErrors = async (response: Response) => {
+export const checkResponseErrors = async (
+  response: Response,
+  redirectToLocationIfUnauthorized?: string | boolean
+) => {
   if (response.status === 401) {
+    if (redirectToLocationIfUnauthorized) {
+      // store the current URL to redirect back to it after successful login
+      localStorage.setItem('from', window.location.href);
+      if (redirectToLocationIfUnauthorized === true) {
+        // use best guess for login URL
+        window.location.href = '/login';
+      } else {
+        window.location.href = redirectToLocationIfUnauthorized;
+      }
+    }
+
     throw new Error(`${response.status} ${response.statusText}`);
   }
+
   if (response.status === 400) {
     throw await response.json().then((errorBody) => errorBody.error);
   }
@@ -90,7 +108,7 @@ export const generateFindMethod = <T>(url: string, host?: string) => {
       redirect: 'error',
     });
 
-    await checkResponseErrors(response);
+    await checkResponseErrors(response, context.meta?.redirectToLocationIfUnauthorized);
 
     return await response.json();
   };
@@ -113,7 +131,7 @@ export const generateGetMethod = <T>(url: string, host?: string) => {
       redirect: 'error',
     });
 
-    await checkResponseErrors(response);
+    await checkResponseErrors(response, context.meta?.redirectToLocationIfUnauthorized);
 
     return await response.json();
   };
@@ -128,7 +146,7 @@ export const generateGetMethod = <T>(url: string, host?: string) => {
  * @returns A function that can be used to create a new item.
  */
 export const generateCreateMethod = <T>(url: string, host?: string) => {
-  return async (data: Partial<T>): Promise<T> => {
+  return async (data: Partial<T>, meta?: QueryMeta): Promise<T> => {
     const response = await fetch(new URL(url, host), {
       method: 'POST',
       credentials: 'include',
@@ -138,7 +156,7 @@ export const generateCreateMethod = <T>(url: string, host?: string) => {
       body: JSON.stringify(data),
     });
 
-    await checkResponseErrors(response);
+    await checkResponseErrors(response, meta?.redirectToLocationIfUnauthorized);
 
     return await response.json();
   };
@@ -153,7 +171,7 @@ export const generateCreateMethod = <T>(url: string, host?: string) => {
  * @returns A function that can be used to update an item.
  */
 export const generateUpdateMethod = <T>(url: string, host?: string) => {
-  return async (id: string, data: Partial<T>): Promise<T> => {
+  return async (id: string, data: Partial<T>, meta?: QueryMeta): Promise<T> => {
     const response = await fetch(new URL(`${url}/${id}`, host), {
       method: 'PATCH',
       credentials: 'include',
@@ -163,7 +181,7 @@ export const generateUpdateMethod = <T>(url: string, host?: string) => {
       body: JSON.stringify(data),
     });
 
-    await checkResponseErrors(response);
+    await checkResponseErrors(response, meta?.redirectToLocationIfUnauthorized);
 
     return await response.json();
   };
@@ -178,7 +196,7 @@ export const generateUpdateMethod = <T>(url: string, host?: string) => {
  * @returns A function that can be used to delete an item.
  */
 export const generateDeleteMethod = <T>(url: string, host?: string) => {
-  return async (id: string): Promise<T> => {
+  return async (id: string, meta?: QueryMeta): Promise<T> => {
     const response = await fetch(new URL(`${url}/${id}`, host), {
       method: 'DELETE',
       credentials: 'include',
@@ -187,7 +205,7 @@ export const generateDeleteMethod = <T>(url: string, host?: string) => {
       },
     });
 
-    await checkResponseErrors(response);
+    await checkResponseErrors(response, meta?.redirectToLocationIfUnauthorized);
 
     return await response.json();
   };
