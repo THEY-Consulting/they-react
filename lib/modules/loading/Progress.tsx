@@ -21,7 +21,7 @@ export const Progress: React.FC<Props> = ({ loading, children, variant, size, sk
     >
       <Stack justifyContent="center" alignItems="center" sx={{ height: '100%' }}>
         {variant === 'linear' ? (
-          <Box width="71%" maxWidth={600}>
+          <Box width="71%" maxWidth={600} minWidth={100}>
             <LinearProgress />
           </Box>
         ) : (
