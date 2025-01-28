@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next';
 
 type Props<T extends FieldValues> = FormFieldBase<T>;
 
-export const CheckboxInput = <T extends FieldValues>({
+export const CheckboxField = <T extends FieldValues>({
   name,
   label,
   rules,
