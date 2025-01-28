@@ -5,7 +5,7 @@ import { NumberInputField } from './NumberInputField';
 import { CurrencyInputField } from './CurrencyInputField';
 import { SelectField } from './SelectField';
 import { DateField } from './DateField';
-import { CheckboxInput } from './CheckboxField';
+import { CheckboxField } from './CheckboxField';
 import { MultilineInputField } from './MultilineInputField';
 import { ChipSelectField } from './ChipSelectField';
 import { ReactNode } from 'react';
@@ -174,7 +174,7 @@ export const RenderInputField = <T extends FieldValues>(props: Props<T>) => {
       );
     case 'boolean':
       return (
-        <CheckboxInput name={name} label={label} rules={rules} disabled={disabled} readonly={readonly} />
+        <CheckboxField name={name} label={label} rules={rules} disabled={disabled} readonly={readonly} />
       );
     case 'multiline':
       return (
