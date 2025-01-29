@@ -20,7 +20,7 @@ const meta = {
           {
             type: 'button',
             name: 'button',
-            label: 'Label',
+            label: 'Submit',
           },
         ],
       },
@@ -41,8 +41,25 @@ export const StartIcon: Story = {
           {
             type: 'button',
             name: 'button',
-            label: 'Label',
+            label: 'Feeding time',
             startIcon: <PetsIcon />,
+          },
+        ],
+      },
+    ],
+  },
+};
+
+export const Disabled: Story = {
+  args: {
+    fields: [
+      {
+        fields: [
+          {
+            type: 'button',
+            name: 'button',
+            label: `Submit`,
+            disabled: true,
           },
         ],
       },

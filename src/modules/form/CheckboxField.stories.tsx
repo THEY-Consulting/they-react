@@ -19,7 +19,7 @@ const meta = {
           {
             type: 'boolean',
             name: 'checkbox',
-            label: 'Label',
+            label: 'This is great',
           },
         ],
       },
@@ -55,7 +55,7 @@ export const Disabled: Story = {
           {
             type: 'boolean',
             name: 'checkbox',
-            label: 'Label',
+            label: 'This is great',
             disabled: true,
           },
         ],
