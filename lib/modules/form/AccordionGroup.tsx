@@ -26,6 +26,7 @@ export const AccordionGroup = <T extends FieldValues>({
           display: 'none',
         },
       }}
+      defaultExpanded={group.expanded}
     >
       <AccordionSummary
         expandIcon={<ExpandMoreIcon />}
