@@ -19,3 +19,5 @@ export type { TableColumns } from './modules/table/types';
 export { StickyTable } from './modules/table/StickyTable';
 export type { Tabs } from './modules/tabs/types';
 export { TabsView } from './modules/tabs/TabsView';
+export type { Location, MapProps } from './modules/map/types';
+export { Map } from './modules/map/Map.tsx';
