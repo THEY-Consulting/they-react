@@ -156,7 +156,7 @@ const bavarianLocations: Location[] = sampleLocations.filter((loc) =>
 );
 
 const meta = {
-  title: 'Components/Map',
+  title: 'Map/Map',
   component: Map,
   parameters: {
     layout: 'fullscreen',
