@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import type { Location } from '../../../lib/modules/map/types.ts';
+import type { Location } from '../../../lib/modules/map/types';
 import { Map } from '../../../lib/main';
 
 // Parse the sample data
@@ -167,17 +167,13 @@ const meta = {
       control: 'object',
       description: 'Array of location objects to display on the map',
     },
-    enableClustering: {
-      control: 'boolean',
-      description: 'Enable marker clustering for better visualization with many markers',
+    center: {
+      control: 'object',
+      description: 'Center coordinates of the map as [latitude, longitude]',
     },
     mapHeight: {
       control: 'text',
       description: 'Height of the map container',
-    },
-    clusterOptions: {
-      control: 'object',
-      description: 'Configuration options for marker clustering',
     },
   },
 } satisfies Meta<typeof Map>;
@@ -189,23 +185,6 @@ type Story = StoryObj<typeof Map>;
 export const Default: Story = {
   args: {
     locations: sampleLocations,
-    mapHeight: '400px',
-  },
-};
-
-// Map with clustering enabled
-export const WithClustering: Story = {
-  args: {
-    locations: sampleLocations,
-    enableClustering: true,
-    mapHeight: '400px',
-    clusterOptions: {
-      chunkedLoading: true,
-      maxClusterRadius: 100,
-      spiderfyOnMaxZoom: true,
-      showCoverageOnHover: true,
-      zoomToBoundsOnClick: true,
-    },
   },
 };
 
@@ -213,6 +192,7 @@ export const WithClustering: Story = {
 export const MunichArea: Story = {
   args: {
     locations: munichLocations,
+    center: [48.137154, 11.576124],
     mapHeight: '400px',
   },
 };
@@ -225,75 +205,11 @@ export const TallMap: Story = {
   },
 };
 
-// Map with minimal clustering radius
-export const DenseClusteringMap: Story = {
-  args: {
-    locations: sampleLocations,
-    enableClustering: true,
-    mapHeight: '400px',
-    clusterOptions: {
-      maxClusterRadius: 50,
-      spiderfyOnMaxZoom: true,
-    },
-  },
-};
-
-// Map with sparse clustering
-export const SparseClusteringMap: Story = {
-  args: {
-    locations: sampleLocations,
-    enableClustering: true,
-    mapHeight: '400px',
-    clusterOptions: {
-      maxClusterRadius: 200,
-      spiderfyOnMaxZoom: false,
-    },
-  },
-};
-
-// Map with custom cluster options
-export const CustomClusterOptions: Story = {
-  args: {
-    locations: sampleLocations,
-    enableClustering: true,
-    mapHeight: '400px',
-    clusterOptions: {
-      chunkedLoading: true,
-      maxClusterRadius: 150,
-      spiderfyOnMaxZoom: true,
-      showCoverageOnHover: false,
-      zoomToBoundsOnClick: true,
-    },
-  },
-};
-
-// Map with cluster coverage visualization
-export const ClusterCoverageMap: Story = {
-  args: {
-    locations: sampleLocations,
-    enableClustering: true,
-    mapHeight: '400px',
-    clusterOptions: {
-      chunkedLoading: true,
-      maxClusterRadius: 120,
-      spiderfyOnMaxZoom: true,
-      showCoverageOnHover: true,
-      zoomToBoundsOnClick: true,
-    },
-  },
-};
-
 // Map showing only Northern Germany locations
 export const NorthernGermanyMap: Story = {
   args: {
     locations: northernLocations,
-    enableClustering: true,
     mapHeight: '400px',
-    clusterOptions: {
-      maxClusterRadius: 100,
-      spiderfyOnMaxZoom: true,
-      showCoverageOnHover: true,
-    },
   },
 };
 
@@ -301,13 +217,7 @@ export const NorthernGermanyMap: Story = {
 export const SouthernGermanyMap: Story = {
   args: {
     locations: southernLocations,
-    enableClustering: true,
     mapHeight: '400px',
-    clusterOptions: {
-      maxClusterRadius: 100,
-      spiderfyOnMaxZoom: true,
-      showCoverageOnHover: true,
-    },
   },
 };
 
@@ -315,13 +225,8 @@ export const SouthernGermanyMap: Story = {
 export const BavarianMap: Story = {
   args: {
     locations: bavarianLocations,
-    enableClustering: true,
+    center: [48.7904, 11.4979],
     mapHeight: '400px',
-    clusterOptions: {
-      maxClusterRadius: 80,
-      spiderfyOnMaxZoom: true,
-      showCoverageOnHover: true,
-    },
   },
 };
 
@@ -341,33 +246,11 @@ export const ExtraLargeMap: Story = {
   },
 };
 
-// Map with aggressive clustering
-export const AggressiveClusteringMap: Story = {
+// Map with custom center point
+export const CustomCenter: Story = {
   args: {
     locations: sampleLocations,
-    enableClustering: true,
+    center: [49.4521, 11.0767],
     mapHeight: '400px',
-    clusterOptions: {
-      maxClusterRadius: 300,
-      spiderfyOnMaxZoom: true,
-      showCoverageOnHover: true,
-      zoomToBoundsOnClick: false,
-    },
-  },
-};
-
-// Map with minimal clustering and always visible coverage
-export const DetailedClusterMap: Story = {
-  args: {
-    locations: sampleLocations,
-    enableClustering: true,
-    mapHeight: '400px',
-    clusterOptions: {
-      maxClusterRadius: 80,
-      spiderfyOnMaxZoom: true,
-      showCoverageOnHover: true,
-      zoomToBoundsOnClick: true,
-      chunkedLoading: false,
-    },
   },
 };
