@@ -9,13 +9,6 @@ export type Location = {
 };
 export type MapProps = {
     locations: Location[];
-    enableClustering?: boolean;
+    center?: [number, number];
     mapHeight?: string;
-    clusterOptions?: {
-        chunkedLoading?: boolean;
-        maxClusterRadius?: number;
-        spiderfyOnMaxZoom?: boolean;
-        showCoverageOnHover?: boolean;
-        zoomToBoundsOnClick?: boolean;
-    };
 };

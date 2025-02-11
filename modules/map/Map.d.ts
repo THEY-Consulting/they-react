@@ -1,2 +1,2 @@
 import { MapProps } from './types';
-export declare const Map: ({ locations, enableClustering, mapHeight, clusterOptions, }: MapProps) => import("react/jsx-runtime").JSX.Element;
+export declare const Map: ({ locations, center, mapHeight }: MapProps) => import("react/jsx-runtime").JSX.Element;
