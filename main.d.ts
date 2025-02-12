@@ -1,3 +1,4 @@
+export type { QueryMeta } from './modules/api/types';
 export { isNotFoundError, isUnauthorizedError, checkResponseErrors, generateFindMethod, generateGetMethod, generateCreateMethod, generateUpdateMethod, generateDeleteMethod, } from './modules/api/utils';
 export type { Auditable } from './modules/audit/types';
 export { getAbility, isAuthSubject, getRulesForClaims } from './modules/auth/abac';

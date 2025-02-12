@@ -1,4 +1,4 @@
-import{j as i}from"./index-CmiyD9qn.js";import"./index-DUAV1Q2A.js";import{E as m}from"./Map-DYerT6Yc.js";import"./index-CqVsPxxY.js";const h={title:"error/ErrorBoundary",component:m,parameters:{layout:"centered"},argTypes:{},args:{}},p=()=>{throw new Error("I am broken")},r={args:{children:"Everything is fine"}},e={args:{children:i.jsx(p,{})}};var o,s,n;r.parameters={...r.parameters,docs:{...(o=r.parameters)==null?void 0:o.docs,source:{originalSource:`{
+import{j as i}from"./index-CmiyD9qn.js";import"./index-DUAV1Q2A.js";import{E as m}from"./Map-BX0Otwij.js";import"./index-CqVsPxxY.js";const h={title:"error/ErrorBoundary",component:m,parameters:{layout:"centered"},argTypes:{},args:{}},p=()=>{throw new Error("I am broken")},r={args:{children:"Everything is fine"}},e={args:{children:i.jsx(p,{})}};var o,s,n;r.parameters={...r.parameters,docs:{...(o=r.parameters)==null?void 0:o.docs,source:{originalSource:`{
   args: {
     children: 'Everything is fine'
   }
