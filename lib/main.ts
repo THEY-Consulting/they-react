@@ -1,3 +1,4 @@
+export type { QueryMeta } from './modules/api/types';
 export {
   isNotFoundError,
   isUnauthorizedError,

@@ -21,7 +21,7 @@ export const Map = ({ locations, center, mapHeight = '500px' }: MapProps) => {
       center={center || defaultCenter}
       zoom={6}
       scrollWheelZoom={true}
-      style={{ height: mapHeight, width: '100%', margin: 2 }}
+      style={{ height: mapHeight, width: '100%' }}
     >
       <MapResizer />
       <TileLayer
