@@ -18,6 +18,8 @@ type Props<T extends FieldValues> = (BaseFieldProps<T> & {
     startAdornment?: ReactNode;
     endAdornment?: ReactNode;
 }) | (BaseFieldProps<T> & {
+    type: 'password';
+}) | (BaseFieldProps<T> & {
     type: 'select';
     options?: InputFieldOption<T[FieldPath<T>]>[];
     autocomplete?: boolean;

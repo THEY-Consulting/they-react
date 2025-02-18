@@ -4,6 +4,7 @@ type Props = {
     disabled?: boolean;
     hideDirtyNotification?: boolean;
     sx?: SxProps<Theme>;
+    label?: string;
 };
-export declare const FormSubmit: <T extends FieldValues>({ disabled, hideDirtyNotification, sx }: Props) => import("react/jsx-runtime").JSX.Element;
+export declare const FormSubmit: <T extends FieldValues>({ disabled, hideDirtyNotification, sx, label }: Props) => import("react/jsx-runtime").JSX.Element;
 export {};

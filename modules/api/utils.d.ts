@@ -65,3 +65,22 @@ export declare const generateUpdateMethod: <T>(url: string, host?: string) => (i
  * @returns A function that can be used to delete an item.
  */
 export declare const generateDeleteMethod: <T>(url: string, host?: string) => (id: string, meta?: QueryMeta) => Promise<T>;
+/**
+ * Generate a function that submits a form to the API.
+ * The fetch call uses POST.
+ *
+ * @param url The URL to send the form data to.
+ * @param host The host domain to send the form data to.
+ * @returns A function that can be used to submit a form.
+ */
+export declare const generateFormMethod: <T>(url: string, host?: string) => (data: Partial<T>, meta?: QueryMeta) => Promise<T>;
+/**
+ * Generate a function that logs in a user.
+ * The fetch call uses a form POST.
+ *
+ * @param url The URL to send the form data to.
+ * @param host The host domain to send the form data to.
+ * @param hasResponseBody Whether the login method should expect a json body in the response.
+ * @returns A function that can be used to log in a user.
+ */
+export declare const generateLoginMethod: <T>(url: string, host?: string, hasResponseBody?: boolean) => (data: Partial<T>) => Promise<T | void>;

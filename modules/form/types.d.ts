@@ -54,6 +54,8 @@ export type DynamicFormField<T extends FieldValues> = (FormFieldBase<T> & {
     endAdornment?: ReactNode;
     initial?: number | string;
 }) | (FormFieldBase<T> & {
+    type: 'password';
+}) | (FormFieldBase<T> & {
     type: 'select';
     options: InputFieldOptions<T>;
     autocomplete?: boolean;

@@ -140,6 +140,23 @@ export declare const mapFieldGroups: <T extends FieldValues>(fields: FormGroup<T
         lg?: number | "auto" | true;
         xl?: number | "auto" | true;
         align?: "flex-start" | "center" | "flex-end" | "stretch" | "baseline";
+        type: "password";
+    } | {
+        rules: Omit<RegisterOptions<T, Path<T>>, "disabled" | "valueAsNumber" | "valueAsDate" | "setValueAs"> | undefined;
+        name: Path<T>;
+        label?: string;
+        size?: "small" | "medium";
+        required?: boolean;
+        disabled?: boolean;
+        readonly?: boolean;
+        hidden?: boolean;
+        sx?: import('@mui/system').SxProps;
+        xs?: number | "auto" | true;
+        sm?: number | "auto" | true;
+        md?: number | "auto" | true;
+        lg?: number | "auto" | true;
+        xl?: number | "auto" | true;
+        align?: "flex-start" | "center" | "flex-end" | "stretch" | "baseline";
         type: "select";
         options: InputFieldOptions<T>;
         autocomplete?: boolean;

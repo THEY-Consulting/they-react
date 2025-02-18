@@ -16,7 +16,10 @@ type Props<T extends FieldValues | Partial<AuthSubject>> = {
     displayContents?: boolean;
     action?: Action;
     hideDirtyNotification?: boolean;
-    submitSx?: SxProps<Theme>;
+    submitProps?: {
+        sx?: SxProps<Theme>;
+        label?: string;
+    };
 };
 export declare const FormFactory: <T extends FieldValues & Partial<AuthSubject> & Auditable>(props: Props<T>) => import("react/jsx-runtime").JSX.Element;
 export {};
