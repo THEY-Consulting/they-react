@@ -7,9 +7,10 @@ type Props = {
   disabled?: boolean;
   hideDirtyNotification?: boolean;
   sx?: SxProps<Theme>;
+  label?: string;
 };
 
-export const FormSubmit = <T extends FieldValues>({ disabled, hideDirtyNotification, sx }: Props) => {
+export const FormSubmit = <T extends FieldValues>({ disabled, hideDirtyNotification, sx, label }: Props) => {
   const { t } = useTranslation();
   const { isDirty, isSubmitting } = useFormState<T>();
 
@@ -50,7 +51,7 @@ export const FormSubmit = <T extends FieldValues>({ disabled, hideDirtyNotificat
           disabled={!!disabled || !isDirty || isSubmitting}
           sx={sx}
         >
-          {t('form.save')}
+          {label ?? t('form.save')}
         </Button>
       </Box>
       <Slide direction="up" in={!disabled && isDirty && !hideDirtyNotification} mountOnEnter unmountOnExit>
@@ -80,7 +81,7 @@ export const FormSubmit = <T extends FieldValues>({ disabled, hideDirtyNotificat
                   disabled={isSubmitting}
                   sx={{ marginLeft: 1 }}
                 >
-                  Save
+                  {label ?? t('form.save')}
                 </Button>
               }
             >

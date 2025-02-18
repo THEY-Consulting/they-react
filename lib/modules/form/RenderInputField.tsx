@@ -17,6 +17,7 @@ import { SelectButtonField } from './SelectButtonField';
 import { DividerLabel } from './DividerLabel';
 import { AutocompleteOwnerState, AutocompleteRenderOptionState, FilterOptionsState } from '@mui/material';
 import { UrlInputField } from './UrlInputField';
+import { PasswordInputField } from './PasswordInputField';
 
 type BaseFieldProps<T extends FieldValues> = FormFieldBase<T>;
 type Props<T extends FieldValues> =
@@ -37,6 +38,9 @@ type Props<T extends FieldValues> =
       type: 'number';
       startAdornment?: ReactNode;
       endAdornment?: ReactNode;
+    })
+  | (BaseFieldProps<T> & {
+      type: 'password';
     })
   | (BaseFieldProps<T> & {
       type: 'select';
@@ -231,6 +235,17 @@ export const RenderInputField = <T extends FieldValues>(props: Props<T>) => {
           size={size}
           startAdornment={props.startAdornment}
           endAdornment={props.endAdornment}
+          disabled={disabled}
+          readonly={readonly}
+        />
+      );
+    case 'password':
+      return (
+        <PasswordInputField
+          name={name}
+          label={label}
+          rules={rules}
+          size={size}
           disabled={disabled}
           readonly={readonly}
         />
