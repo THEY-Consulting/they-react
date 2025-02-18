@@ -210,3 +210,60 @@ export const generateDeleteMethod = <T>(url: string, host?: string) => {
     return await response.json();
   };
 };
+
+/**
+ * Generate a function that submits a form to the API.
+ * The fetch call uses POST.
+ *
+ * @param url The URL to send the form data to.
+ * @param host The host domain to send the form data to.
+ * @returns A function that can be used to submit a form.
+ */
+export const generateFormMethod = <T>(url: string, host?: string) => {
+  return async (data: Partial<T>, meta?: QueryMeta): Promise<T> => {
+    const formData = new FormData();
+    Object.entries(data).forEach(([key, value]) => {
+      formData.append(key, value as string);
+    });
+
+    const response = await fetch(new URL(url, host), {
+      method: 'POST',
+      credentials: 'include',
+      body: formData,
+    });
+
+    await checkResponseErrors(response, meta?.redirectToLocationIfUnauthorized);
+
+    return await response.json();
+  };
+};
+
+/**
+ * Generate a function that logs in a user.
+ * The fetch call uses a form POST.
+ *
+ * @param url The URL to send the form data to.
+ * @param host The host domain to send the form data to.
+ * @param hasResponseBody Whether the login method should expect a json body in the response.
+ * @returns A function that can be used to log in a user.
+ */
+export const generateLoginMethod = <T>(url: string, host?: string, hasResponseBody = true) => {
+  return async (data: Partial<T>): Promise<T | void> => {
+    const formData = new FormData();
+    Object.entries(data).forEach(([key, value]) => {
+      formData.append(key, value as string);
+    });
+
+    const response = await fetch(new URL(url, host), {
+      method: 'POST',
+      credentials: 'include',
+      body: formData,
+    });
+
+    await checkResponseErrors(response, false);
+
+    if (hasResponseBody) {
+      return await response.json();
+    }
+  };
+};

@@ -36,7 +36,10 @@ type Props<T extends FieldValues | Partial<AuthSubject>> = {
   displayContents?: boolean;
   action?: Action;
   hideDirtyNotification?: boolean;
-  submitSx?: SxProps<Theme>;
+  submitProps?: {
+    sx?: SxProps<Theme>;
+    label?: string;
+  };
 };
 
 const displayContentsSx = { display: 'contents' };
@@ -54,7 +57,7 @@ const InnerFormFactory = <T extends FieldValues & Partial<AuthSubject> & Auditab
   displayContents,
   action,
   hideDirtyNotification,
-  submitSx,
+  submitProps,
 }: Props<T>) => {
   const { t } = useTranslation();
   const { enqueueSnackbar } = useSnackbar();
@@ -156,8 +159,8 @@ const InnerFormFactory = <T extends FieldValues & Partial<AuthSubject> & Auditab
           )
         )}
         {errorMessage && <Typography color="error">{errorMessage}</Typography>}
-        {formData && onSubmit && allowed && (
-          <FormSubmit disabled={disabled} hideDirtyNotification={hideDirtyNotification} sx={submitSx} />
+        {onSubmit && allowed && (
+          <FormSubmit disabled={disabled} hideDirtyNotification={hideDirtyNotification} {...submitProps} />
         )}
         {formData?.editedAt && formData?.editedBy && (
           <Box mt={2} textAlign="right">
