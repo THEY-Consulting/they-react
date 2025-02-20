@@ -171,7 +171,9 @@ export const getErrorMessage = <T extends FieldValues>(
   }
   const resolvedDotPath = path.replace(/\.(\d+)\./g, '[$1].');
 
-  return errors.find((detail) => detail.path === resolvedDotPath)?.message ?? '';
+  const errorMessage = errors.find((detail) => detail.path === resolvedDotPath)?.message;
+
+  return errorMessage ? t([`form.errors.${errorMessage}`, errorMessage]) : '';
 };
 
 const getDefaultValueFallback = <T extends FieldValues>(field: DynamicFormField<T>): T[FieldPath<T>] => {
