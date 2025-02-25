@@ -162,9 +162,14 @@ const InnerFormFactory = <T extends FieldValues & Partial<AuthSubject> & Auditab
         {onSubmit && allowed && (
           <FormSubmit disabled={disabled} hideDirtyNotification={hideDirtyNotification} {...submitProps} />
         )}
-        {formData?.editedAt && formData?.editedBy && (
+        {((formData?.createdAt && formData?.createdBy) || (formData?.editedAt && formData?.editedBy)) && (
           <Box mt={2} textAlign="right">
-            <FormMetadata editedBy={formData.editedBy} editedAt={formData.editedAt} />
+            <FormMetadata
+              createdBy={formData.createdBy}
+              createdAt={formData.createdAt}
+              editedBy={formData.editedBy}
+              editedAt={formData.editedAt}
+            />
           </Box>
         )}
       </form>
