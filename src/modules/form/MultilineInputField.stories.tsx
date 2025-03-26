@@ -32,6 +32,28 @@ type Story = StoryObj<typeof meta>;
 
 export const MultiLineInputField: Story = {};
 
+export const RemainingCharacters: Story = {
+  args: {
+    formData: {
+      notes: 'Focus this field to see the remaining characters',
+    },
+    fields: [
+      {
+        fields: [
+          {
+            type: 'multiline',
+            name: 'notes',
+            label: 'Notes',
+            rules: {
+              maxLength: 200,
+            },
+          },
+        ],
+      },
+    ],
+  },
+};
+
 export const MinRows: Story = {
   args: {
     fields: [
