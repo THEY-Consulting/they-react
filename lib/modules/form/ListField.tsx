@@ -74,7 +74,7 @@ export const ListField = <T extends FieldValues>({
               <DividerLabel label={getLabel ? getLabel(index, name) : label} />
             </Grid>
             <Grid item alignSelf="center">
-              {!readonly && (
+              {!readonly && !!newEntry && (
                 <IconButton size="small" onClick={() => removeEntry(index)} disabled={disabled}>
                   <DeleteIcon fontSize="inherit" />
                 </IconButton>

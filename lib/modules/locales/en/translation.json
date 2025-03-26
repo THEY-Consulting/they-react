@@ -2,7 +2,10 @@
   "form": {
     "save": "Save",
     "unsavedChanges": "Unsaved changes",
-    "metadata": "Last edited on {{date}} at {{time}} by {{user}}",
+    "metadata": {
+      "created": "Created on {{date}} at {{time}} by {{user}}",
+      "edited": "Last edited on {{date}} at {{time}} by {{user}}"
+    },
     "submit": {
       "success": "Saved successfully",
       "error": "Error while saving"
@@ -21,6 +24,7 @@
   },
   "format": {
     "date": "{{date, datetime(year: numeric; month: numeric; day: numeric)}}",
+    "time": "{{date, datetime(hour: numeric; minute: numeric)}}",
     "dateTime": "{{date, datetime(year: numeric; month: numeric; day: numeric; hour: numeric; minute: numeric)}}",
     "currency": "{{value, currency(USD)}}"
   }
