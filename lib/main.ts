@@ -27,7 +27,7 @@ export { CopyToClipboardIconButton } from './modules/clipboard/CopyToClipboardIc
 export { ErrorBoundary } from './modules/error/ErrorBoundary';
 export { ErrorDisplay } from './modules/error/ErrorDisplay';
 
-export type { FormFields, ErrorResponse, ValidationError } from './modules/form/types';
+export type { FormFields, ErrorResponse, ValidationError, FormGroup, DynamicFormField } from './modules/form/types';
 export { FormFactory } from './modules/form/FormFactory';
 
 export { Progress } from './modules/loading/Progress';
