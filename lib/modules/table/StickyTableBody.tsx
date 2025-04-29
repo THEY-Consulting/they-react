@@ -1,6 +1,6 @@
 import { TableBody, TableCell, TableRow, Typography } from '@mui/material';
 
-import { formatValue, getValue } from './utils';
+import { formatValue } from './utils';
 import { StyledTableRow } from './StyledTableRow';
 import { TableColumns } from './types';
 import { StickyTableActions } from './StickyTableActions';
@@ -34,7 +34,7 @@ export const StickyTableBody = <T,>({
         <StyledTableRow tabIndex={-1} key={idx}>
           {columns.map((column) => (
             <TableCell key={column.key ?? column.name} align={column.align}>
-              {formatValue(t, getValue(row, column.name), column.format, column.empty)}
+              {formatValue(t, row, column.name, column.format, column.empty)}
             </TableCell>
           ))}
           {(onView || onEdit) && (

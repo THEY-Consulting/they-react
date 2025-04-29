@@ -3,6 +3,7 @@ import { formatCurrency, formatDateString, formatDateTimeString, StickyTable } f
 import { Box } from '@mui/material';
 import { fn } from '@storybook/test';
 import { formatISO } from 'date-fns';
+import { TFunction } from 'i18next';
 
 type TableEntity = {
   firstName: string;
@@ -100,6 +101,12 @@ export const WithEditActions: Story = {
   },
 };
 
+type FormattingTableEntity = {
+  item: string;
+  date: string;
+  price: number;
+  since: string;
+};
 export const Formatter: Story = {
   args: {
     columns: [
@@ -126,6 +133,12 @@ export const Formatter: Story = {
         name: 'since',
         label: 'Since',
         format: formatDateTimeString,
+      },
+      // @ts-expect-error we change the data structure for this story
+      {
+        name: 'item',
+        label: 'Combined',
+        format: (item: string, _: TFunction, row: FormattingTableEntity) => `${item} (${row.price})`,
       },
     ],
     data: [
