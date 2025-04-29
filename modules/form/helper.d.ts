@@ -291,6 +291,7 @@ export declare const mapFieldGroups: <T extends FieldValues>(fields: FormGroup<T
     marginBottom?: number;
     required?: boolean;
     accordion?: boolean;
+    expanded?: boolean;
 }[];
 export declare const combineValidation: <T extends FieldValues>(rules: DynamicFormField<T>["rules"], validations: RegisterOptions<T>["validate"]) => DynamicFormField<T>["rules"];
 export declare const isErrorResponse: (response: unknown) => response is ErrorResponse;

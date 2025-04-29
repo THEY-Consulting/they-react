@@ -103,6 +103,7 @@ export type FormGroup<T extends FieldValues> = {
     marginBottom?: number;
     required?: boolean;
     accordion?: boolean;
+    expanded?: boolean;
 };
 export type FormFields<T extends FieldValues> = FormGroup<T>[];
 export type ValidationError = {
