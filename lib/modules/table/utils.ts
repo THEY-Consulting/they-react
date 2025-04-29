@@ -10,12 +10,14 @@ export const getValue = <T, P extends Path<T>>(data: T, path: P): PathValue<T, P
 
 export const formatValue = <T, P extends Path<T>>(
   t: TFunction,
-  value: PathValue<T, P>,
+  row: T,
+  path: P,
   format: TableColumnFormatter<T, P> | undefined,
   empty?: ReactNode
 ): ReactNode => {
+  const value = getValue<T, P>(row, path);
   if (value === null || value === undefined) {
     return empty ?? '-';
   }
-  return (format ? format(value, t) : value.toString()) || (empty ?? '-');
+  return (format ? format(value, t, row) : value.toString()) || (empty ?? '-');
 };
