@@ -23,7 +23,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/THEY-Consulting/they-react.git"
+    "url": "https://github.com/THEY-Consulting/they-react.git"
   },
   "author": "they consulting GmbH",
   "license": "ISC",
