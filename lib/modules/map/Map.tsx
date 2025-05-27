@@ -21,8 +21,8 @@ const MAP_CONSTANTS = {
 // The array is programmatically generated to ensure consistency and reduce errors.
 const ZOOM_LEVELS = Array.from({ length: 21 }, (_, zoom) => ({
   zoom,
-  halfTileWidth: 360 / (2 ** (zoom + 1)),
-})) as const;
+  halfTileWidth: 360 / 2 ** (zoom + 1),
+})) as ReadonlyArray<{ zoom: number; halfTileWidth: number }>;
 
 export const Map = ({ locations, center, mapHeight = MAP_CONSTANTS.DEFAULT_HEIGHT }: MapProps) => {
   const { mapCenter, mapZoom } = useMemo(() => {
