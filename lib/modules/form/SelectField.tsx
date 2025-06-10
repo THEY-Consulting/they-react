@@ -8,6 +8,7 @@ import { useTranslation } from 'react-i18next';
 
 type Props<T extends FieldValues> = FormFieldBase<T> & {
   options: InputFieldOptions<T>;
+  multiple?: boolean;
   startAdornment?: ReactNode;
 };
 
@@ -17,6 +18,7 @@ export const SelectField = <T extends FieldValues>({
   rules,
   size,
   options,
+  multiple,
   startAdornment,
   disabled,
   readonly,
@@ -47,6 +49,7 @@ export const SelectField = <T extends FieldValues>({
         labelId={label ? `${name}-label` : undefined}
         notched
         label={getRequiredLabel(label, !!rules?.required, disabled || readonly)}
+        multiple={multiple}
         size={size}
         startAdornment={startAdornment}
       >
