@@ -23,6 +23,7 @@ type Props<T extends FieldValues> = (BaseFieldProps<T> & {
     type: 'select';
     options?: InputFieldOption<T[FieldPath<T>]>[];
     autocomplete?: boolean;
+    multiple?: boolean;
     fitContent?: boolean;
     filterOptions?: (options: T[FieldPath<T>][], state: FilterOptionsState<T[FieldPath<T>]>) => T[FieldPath<T>][];
     renderOption?: (props: React.HTMLAttributes<HTMLLIElement> & {

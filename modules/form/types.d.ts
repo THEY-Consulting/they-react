@@ -65,6 +65,7 @@ export type DynamicFormField<T extends FieldValues> = (FormFieldBase<T> & {
         key?: string;
     }, option: T[FieldPath<T>], state: AutocompleteRenderOptionState, ownerState: AutocompleteOwnerState<T[FieldPath<T>], false, false, false>) => ReactNode;
     startAdornment?: ReactNode;
+    multiple?: boolean;
     initial?: number | string;
 }) | (FormFieldBase<T> & {
     type: 'chipselect';

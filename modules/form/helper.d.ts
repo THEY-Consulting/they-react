@@ -166,6 +166,7 @@ export declare const mapFieldGroups: <T extends FieldValues>(fields: FormGroup<T
             key?: string;
         }, option: T[Path<T>], state: import('@mui/material').AutocompleteRenderOptionState, ownerState: import('@mui/material').AutocompleteOwnerState<T[Path<T>], false, false, false>) => import('../../../node_modules/react').ReactNode) | undefined;
         startAdornment?: import('../../../node_modules/react').ReactNode;
+        multiple?: boolean;
         initial?: number | string;
     } | {
         rules: Omit<RegisterOptions<T, Path<T>>, "disabled" | "valueAsNumber" | "valueAsDate" | "setValueAs"> | undefined;

@@ -1,0 +1,68 @@
+import{j as s}from"./index-DlYN8Jxj.js";import{r as l}from"./index-DUAV1Q2A.js";import{u as it,e as lt,R as dt,D as mt,g as ut,G as ht,h as P,i as Ue,j as ft,s as St,c as Ye,I as Qe,k as gt,T as pt}from"./FormFactory-CKFXnh9Y.js";import{T as Ct}from"./Map-BL7i9kxN.js";import{f as yt}from"./index-cNkFZXRj.js";import"./index-CqVsPxxY.js";const Je=l.createContext(null);function oe(){return l.useContext(Je)}const bt=typeof Symbol=="function"&&Symbol.for,xt=bt?Symbol.for("mui.nested"):"__THEME_NESTED__";function Tt(e,t){return typeof t=="function"?t(e):{...e,...t}}function kt(e){const{children:t,theme:r}=e,i=oe(),p=l.useMemo(()=>{const d=i===null?{...r}:Tt(i,r);return d!=null&&(d[xt]=i!==null),d},[r,i]);return s.jsx(Je.Provider,{value:p,children:t})}const Te={};function ke(e,t,r,i=!1){return l.useMemo(()=>{const p=e&&t[e]||t;if(typeof r=="function"){const d=r(p),o=e?{...t,[e]:d}:d;return i?()=>o:o}return e?{...t,[e]:r}:{...t,...r}},[e,t,r,i])}function Xe(e){const{children:t,theme:r,themeId:i}=e,p=it(Te),d=oe()||Te,o=ke(i,p,r),m=ke(i,d,r,!0),I=(i?o[i]:o).direction==="rtl";return s.jsx(kt,{theme:m,children:s.jsx(lt.Provider,{value:o,children:s.jsx(dt,{value:I,children:s.jsx(mt,{value:i?o[i].components:o.components,children:t})})})})}const re="mode",ne="color-scheme",Mt="data-color-scheme";function Et(e){const{defaultMode:t="system",defaultLightColorScheme:r="light",defaultDarkColorScheme:i="dark",modeStorageKey:p=re,colorSchemeStorageKey:d=ne,attribute:o=Mt,colorSchemeNode:m="document.documentElement",nonce:I}=e||{};let u="",S=o;if(o==="class"&&(S=".%s"),o==="data"&&(S="[data-%s]"),S.startsWith(".")){const h=S.substring(1);u+=`${m}.classList.remove('${h}'.replace('%s', light), '${h}'.replace('%s', dark));
+      ${m}.classList.add('${h}'.replace('%s', colorScheme));`}const T=S.match(/\[([^\]]+)\]/);if(T){const[h,E]=T[1].split("=");E||(u+=`${m}.removeAttribute('${h}'.replace('%s', light));
+      ${m}.removeAttribute('${h}'.replace('%s', dark));`),u+=`
+      ${m}.setAttribute('${h}'.replace('%s', colorScheme), ${E?`${E}.replace('%s', colorScheme)`:'""'});`}else u+=`${m}.setAttribute('${S}', colorScheme);`;return s.jsx("script",{suppressHydrationWarning:!0,nonce:typeof window>"u"?I:"",dangerouslySetInnerHTML:{__html:`(function() {
+try {
+  let colorScheme = '';
+  const mode = localStorage.getItem('${p}') || '${t}';
+  const dark = localStorage.getItem('${d}-dark') || '${i}';
+  const light = localStorage.getItem('${d}-light') || '${r}';
+  if (mode === 'system') {
+    // handle system mode
+    const mql = window.matchMedia('(prefers-color-scheme: dark)');
+    if (mql.matches) {
+      colorScheme = dark
+    } else {
+      colorScheme = light
+    }
+  }
+  if (mode === 'light') {
+    colorScheme = light;
+  }
+  if (mode === 'dark') {
+    colorScheme = dark;
+  }
+  if (colorScheme) {
+    ${u}
+  }
+} catch(e){}})();`}},"mui-color-scheme-init")}function Me(e){if(typeof window<"u"&&typeof window.matchMedia=="function"&&e==="system")return window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}function Ze(e,t){if(e.mode==="light"||e.mode==="system"&&e.systemMode==="light")return t("light");if(e.mode==="dark"||e.mode==="system"&&e.systemMode==="dark")return t("dark")}function jt(e){return Ze(e,t=>{if(t==="light")return e.lightColorScheme;if(t==="dark")return e.darkColorScheme})}function te(e,t){if(typeof window>"u")return;let r;try{r=localStorage.getItem(e)||void 0,r||localStorage.setItem(e,t)}catch{}return r||t}function wt(e){const{defaultMode:t="light",defaultLightColorScheme:r,defaultDarkColorScheme:i,supportedColorSchemes:p=[],modeStorageKey:d=re,colorSchemeStorageKey:o=ne,storageWindow:m=typeof window>"u"?void 0:window,noSsr:I=!1}=e,u=p.join(","),S=p.length>1,[T,h]=l.useState(()=>{const n=te(d,t),c=te(`${o}-light`,r),a=te(`${o}-dark`,i);return{mode:n,systemMode:Me(n),lightColorScheme:c,darkColorScheme:a}}),[E,q]=l.useState(I||!S);l.useEffect(()=>{q(!0)},[]);const U=jt(T),O=l.useCallback(n=>{h(c=>{if(n===c.mode)return c;const a=n??t;try{localStorage.setItem(d,a)}catch{}return{...c,mode:a,systemMode:Me(a)}})},[d,t]),v=l.useCallback(n=>{n?typeof n=="string"?n&&!u.includes(n)?console.error(`\`${n}\` does not exist in \`theme.colorSchemes\`.`):h(c=>{const a={...c};return Ze(c,k=>{try{localStorage.setItem(`${o}-${k}`,n)}catch{}k==="light"&&(a.lightColorScheme=n),k==="dark"&&(a.darkColorScheme=n)}),a}):h(c=>{const a={...c},k=n.light===null?r:n.light,C=n.dark===null?i:n.dark;if(k)if(!u.includes(k))console.error(`\`${k}\` does not exist in \`theme.colorSchemes\`.`);else{a.lightColorScheme=k;try{localStorage.setItem(`${o}-light`,k)}catch{}}if(C)if(!u.includes(C))console.error(`\`${C}\` does not exist in \`theme.colorSchemes\`.`);else{a.darkColorScheme=C;try{localStorage.setItem(`${o}-dark`,C)}catch{}}return a}):h(c=>{try{localStorage.setItem(`${o}-light`,r),localStorage.setItem(`${o}-dark`,i)}catch{}return{...c,lightColorScheme:r,darkColorScheme:i}})},[u,o,r,i]),W=l.useCallback(n=>{T.mode==="system"&&h(c=>{const a=n!=null&&n.matches?"dark":"light";return c.systemMode===a?c:{...c,systemMode:a}})},[T.mode]),D=l.useRef(W);return D.current=W,l.useEffect(()=>{if(typeof window.matchMedia!="function"||!S)return;const n=(...a)=>D.current(...a),c=window.matchMedia("(prefers-color-scheme: dark)");return c.addListener(n),n(c),()=>{c.removeListener(n)}},[S]),l.useEffect(()=>{if(m&&S){const n=c=>{const a=c.newValue;typeof c.key=="string"&&c.key.startsWith(o)&&(!a||u.match(a))&&(c.key.endsWith("light")&&v({light:a}),c.key.endsWith("dark")&&v({dark:a})),c.key===d&&(!a||["light","dark","system"].includes(a))&&O(a||t)};return m.addEventListener("storage",n),()=>{m.removeEventListener("storage",n)}}},[v,O,d,o,u,t,m,S]),{...T,mode:E?T.mode:void 0,systemMode:E?T.systemMode:void 0,colorScheme:E?U:void 0,setMode:O,setColorScheme:v}}const vt="*{-webkit-transition:none!important;-moz-transition:none!important;-o-transition:none!important;-ms-transition:none!important;transition:none!important}";function $t(e){const{themeId:t,theme:r={},modeStorageKey:i=re,colorSchemeStorageKey:p=ne,disableTransitionOnChange:d=!1,defaultColorScheme:o,resolveTheme:m}=e,I={allColorSchemes:[],colorScheme:void 0,darkColorScheme:void 0,lightColorScheme:void 0,mode:void 0,setColorScheme:()=>{},setMode:()=>{},systemMode:void 0},u=l.createContext(void 0),S=()=>l.useContext(u)||I,T={},h={};function E(v){var Ce,ye,be,xe;const{children:W,theme:D,modeStorageKey:n=i,colorSchemeStorageKey:c=p,disableTransitionOnChange:a=d,storageWindow:k=typeof window>"u"?void 0:window,documentNode:C=typeof document>"u"?void 0:document,colorSchemeNode:j=typeof document>"u"?void 0:document.documentElement,disableNestedContext:et=!1,disableStyleSheetGeneration:tt=!1,defaultMode:ot="system",noSsr:rt}=v,Y=l.useRef(!1),Q=oe(),J=l.useContext(u),X=!!J&&!et,se=l.useMemo(()=>D||(typeof r=="function"?r():r),[D]),ce=se[t],b=ce||se,{colorSchemes:$=T,components:ae=h,cssVarPrefix:Z}=b,ie=Object.keys($).filter(f=>!!$[f]).join(","),L=l.useMemo(()=>ie.split(","),[ie]),le=typeof o=="string"?o:o.light,de=typeof o=="string"?o:o.dark,nt=$[le]&&$[de]?ot:((ye=(Ce=$[b.defaultColorScheme])==null?void 0:Ce.palette)==null?void 0:ye.mode)||((be=b.palette)==null?void 0:be.mode),{mode:st,setMode:me,systemMode:ue,lightColorScheme:he,darkColorScheme:fe,colorScheme:ct,setColorScheme:Se}=wt({supportedColorSchemes:L,defaultLightColorScheme:le,defaultDarkColorScheme:de,modeStorageKey:n,colorSchemeStorageKey:c,defaultMode:nt,storageWindow:k,noSsr:rt});let ee=st,x=ct;X&&(ee=J.mode,x=J.colorScheme);const _=l.useMemo(()=>{var A;const f=x||b.defaultColorScheme,g=((A=b.generateThemeVars)==null?void 0:A.call(b))||b.vars,y={...b,components:ae,colorSchemes:$,cssVarPrefix:Z,vars:g};if(typeof y.generateSpacing=="function"&&(y.spacing=y.generateSpacing()),f){const M=$[f];M&&typeof M=="object"&&Object.keys(M).forEach(w=>{M[w]&&typeof M[w]=="object"?y[w]={...y[w],...M[w]}:y[w]=M[w]})}return m?m(y):y},[b,x,ae,$,Z]),V=b.colorSchemeSelector;ut(()=>{if(x&&j&&V&&V!=="media"){const f=V;let g=V;if(f==="class"&&(g=".%s"),f==="data"&&(g="[data-%s]"),f!=null&&f.startsWith("data-")&&!f.includes("%s")&&(g=`[${f}="%s"]`),g.startsWith("."))j.classList.remove(...L.map(y=>g.substring(1).replace("%s",y))),j.classList.add(g.substring(1).replace("%s",x));else{const y=g.replace("%s",x).match(/\[([^\]]+)\]/);if(y){const[A,M]=y[1].split("=");M||L.forEach(w=>{j.removeAttribute(A.replace(x,w))}),j.setAttribute(A,M?M.replace(/"|'/g,""):"")}else j.setAttribute(g,x)}}},[x,V,j,L]),l.useEffect(()=>{let f;if(a&&Y.current&&C){const g=C.createElement("style");g.appendChild(C.createTextNode(vt)),C.head.appendChild(g),window.getComputedStyle(C.body),f=setTimeout(()=>{C.head.removeChild(g)},1)}return()=>{clearTimeout(f)}},[x,a,C]),l.useEffect(()=>(Y.current=!0,()=>{Y.current=!1}),[]);const at=l.useMemo(()=>({allColorSchemes:L,colorScheme:x,darkColorScheme:fe,lightColorScheme:he,mode:ee,setColorScheme:Se,setMode:me,systemMode:ue}),[L,x,fe,he,ee,Se,me,ue,_.colorSchemeSelector]);let ge=!0;(tt||b.cssVariables===!1||X&&(Q==null?void 0:Q.cssVarPrefix)===Z)&&(ge=!1);const pe=s.jsxs(l.Fragment,{children:[s.jsx(Xe,{themeId:ce?t:void 0,theme:_,children:W}),ge&&s.jsx(ht,{styles:((xe=_.generateStyleSheets)==null?void 0:xe.call(_))||[]})]});return X?pe:s.jsx(u.Provider,{value:at,children:pe})}const q=typeof o=="string"?o:o.light,U=typeof o=="string"?o:o.dark;return{CssVarsProvider:E,useColorScheme:S,getInitColorSchemeScript:v=>Et({colorSchemeStorageKey:p,defaultLightColorScheme:q,defaultDarkColorScheme:U,modeStorageKey:i,...v})}}function Ee({theme:e,...t}){const r=P in e?e[P]:void 0;return s.jsx(Xe,{...t,themeId:r?P:void 0,theme:r||e})}const R={colorSchemeStorageKey:"mui-color-scheme",defaultLightColorScheme:"light",defaultDarkColorScheme:"dark",modeStorageKey:"mui-mode"},{CssVarsProvider:It}=$t({themeId:P,theme:()=>Ue({cssVariables:!0}),colorSchemeStorageKey:R.colorSchemeStorageKey,modeStorageKey:R.modeStorageKey,defaultColorScheme:{light:R.defaultLightColorScheme,dark:R.defaultDarkColorScheme},resolveTheme:e=>{const t={...e,typography:ft(e.palette,e.typography)};return t.unstable_sx=function(i){return St({sx:i,theme:this})},t}}),Dt=It;function Lt({theme:e,...t}){return typeof e=="function"?s.jsx(Ee,{theme:e,...t}):"colorSchemes"in(P in e?e[P]:e)?s.jsx(Dt,{theme:e,...t}):s.jsx(Ee,{theme:e,...t})}const Pt=Ye(s.jsx("path",{d:"M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"}),"Close"),_t=Ye(s.jsx("path",{d:"M3 18h18v-2H3zm0-5h18v-2H3zm0-7v2h18V6z"}),"Menu"),Vt=Ue(),Bt={title:"tabs/TabsView",component:Ct,decorators:[e=>s.jsx(Lt,{theme:Vt,children:s.jsx(e,{})})],parameters:{layout:"centered"},argTypes:{},args:{tabs:[{index:"tab1",label:"Tab 1",content:s.jsx("div",{children:"Tab 1 content"})},{index:"tab2",label:"Tab 2",content:s.jsx("div",{children:"Tab 2 content"})},{index:"tab3",label:"Tab 3",content:s.jsx("div",{children:"Tab 3 content"})}],onChange:yt()}},N={args:{}},B={args:{initial:"tab2"}},H={args:{active:"tab3"}},z={args:{tabViewToggle:s.jsx(Qe,{children:s.jsx(_t,{})})}},F={args:{aside:s.jsx(Qe,{children:s.jsx(Pt,{})})}},je=()=>{const[e,t]=l.useState(0);return s.jsxs(s.Fragment,{children:[s.jsx(gt,{variant:"outlined",onClick:()=>t(e+1),children:"Click me"}),s.jsxs(pt,{children:["Clicked ",e," times"]})]})},K={args:{autoDismount:!0,tabs:[{index:"tab1",label:"Tab 1",content:s.jsx(je,{})},{index:"tab2",label:"Tab 2",content:s.jsx(je,{})}]}},G={args:{...K.args,autoDismount:!1}};var we,ve,$e;N.parameters={...N.parameters,docs:{...(we=N.parameters)==null?void 0:we.docs,source:{originalSource:`{
+  args: {}
+}`,...($e=(ve=N.parameters)==null?void 0:ve.docs)==null?void 0:$e.source}}};var Ie,De,Le;B.parameters={...B.parameters,docs:{...(Ie=B.parameters)==null?void 0:Ie.docs,source:{originalSource:`{
+  args: {
+    initial: 'tab2'
+  }
+}`,...(Le=(De=B.parameters)==null?void 0:De.docs)==null?void 0:Le.source}}};var Pe,_e,Ve;H.parameters={...H.parameters,docs:{...(Pe=H.parameters)==null?void 0:Pe.docs,source:{originalSource:`{
+  args: {
+    active: 'tab3'
+  }
+}`,...(Ve=(_e=H.parameters)==null?void 0:_e.docs)==null?void 0:Ve.source}}};var Ae,Ke,Oe;z.parameters={...z.parameters,docs:{...(Ae=z.parameters)==null?void 0:Ae.docs,source:{originalSource:`{
+  args: {
+    tabViewToggle: <IconButton>
+        <MenuIcon />
+      </IconButton>
+  }
+}`,...(Oe=(Ke=z.parameters)==null?void 0:Ke.docs)==null?void 0:Oe.source}}};var We,Re,Ne;F.parameters={...F.parameters,docs:{...(We=F.parameters)==null?void 0:We.docs,source:{originalSource:`{
+  args: {
+    aside: <IconButton>
+        <CloseIcon />
+      </IconButton>
+  }
+}`,...(Ne=(Re=F.parameters)==null?void 0:Re.docs)==null?void 0:Ne.source}}};var Be,He,ze;K.parameters={...K.parameters,docs:{...(Be=K.parameters)==null?void 0:Be.docs,source:{originalSource:`{
+  args: {
+    autoDismount: true,
+    tabs: [{
+      index: 'tab1',
+      label: 'Tab 1',
+      content: <Panel />
+    }, {
+      index: 'tab2',
+      label: 'Tab 2',
+      content: <Panel />
+    }]
+  }
+}`,...(ze=(He=K.parameters)==null?void 0:He.docs)==null?void 0:ze.source}}};var Fe,Ge,qe;G.parameters={...G.parameters,docs:{...(Fe=G.parameters)==null?void 0:Fe.docs,source:{originalSource:`{
+  args: {
+    ...AutoDismount.args,
+    autoDismount: false
+  }
+}`,...(qe=(Ge=G.parameters)==null?void 0:Ge.docs)==null?void 0:qe.source}}};const Ht=["Tabs","Initial","Controlled","PrefixElement","SuffixElement","AutoDismount","WithoutDismount"];export{K as AutoDismount,H as Controlled,B as Initial,z as PrefixElement,F as SuffixElement,N as Tabs,G as WithoutDismount,Ht as __namedExportsOrder,Bt as default};
