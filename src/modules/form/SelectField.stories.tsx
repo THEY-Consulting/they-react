@@ -4,6 +4,7 @@ import { Pets as PetsIcon } from '@mui/icons-material';
 
 type Entity = {
   choice: string;
+  multi: string[];
 };
 
 const meta = {
@@ -78,6 +79,30 @@ export const Autocomplete: Story = {
             ],
             sx: { width: 200 },
             autocomplete: true,
+          },
+        ],
+      },
+    ],
+  },
+};
+
+export const Multiple: Story = {
+  args: {
+    formData: { multi: ['cats', 'birds'] },
+    fields: [
+      {
+        fields: [
+          {
+            type: 'select',
+            name: 'multi',
+            label: 'Choose multiple',
+            options: [
+              { value: 'cats', label: 'Cats' },
+              { value: 'dogs', label: 'Dogs' },
+              { value: 'birds', label: 'Birds' },
+            ],
+            sx: { width: 200 },
+            multiple: true,
           },
         ],
       },

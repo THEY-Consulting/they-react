@@ -46,6 +46,7 @@ type Props<T extends FieldValues> =
       type: 'select';
       options?: InputFieldOption<T[FieldPath<T>]>[]; // how can we define our type so that we can set this required here?
       autocomplete?: boolean;
+      multiple?: boolean;
       fitContent?: boolean;
       filterOptions?: (
         options: T[FieldPath<T>][],
@@ -118,6 +119,7 @@ export const RenderInputField = <T extends FieldValues>(props: Props<T>) => {
           size={size}
           options={props.options!}
           startAdornment={props.startAdornment}
+          multiple={props.multiple}
           disabled={disabled}
           readonly={readonly}
         />

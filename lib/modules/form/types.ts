@@ -89,6 +89,7 @@ export type DynamicFormField<T extends FieldValues> =
         ownerState: AutocompleteOwnerState<T[FieldPath<T>], false, false, false>
       ) => ReactNode;
       startAdornment?: ReactNode;
+      multiple?: boolean;
       initial?: number | string;
     })
   | (FormFieldBase<T> & {
