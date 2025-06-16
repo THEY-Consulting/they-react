@@ -91,6 +91,13 @@ const notUndefinedEntry = <T>(entry: [string, T | undefined]): entry is [string,
   return entry[1] !== undefined;
 };
 
+const getHeaders = async (meta?: QueryMeta) => {
+  if (typeof meta?.headers === 'function') {
+    return await meta?.headers();
+  }
+  return meta?.headers;
+};
+
 /**
  * Generate a function that fetches a list of items from the API.
  * The fetch call uses GET.
@@ -106,6 +113,7 @@ export const generateFindMethod = <T>(url: string, host?: string) => {
       method: 'GET',
       credentials: 'include',
       redirect: 'error',
+      headers: await getHeaders(context.meta),
     });
 
     await checkResponseErrors(response, context.meta?.redirectToLocationIfUnauthorized);
@@ -129,6 +137,7 @@ export const generateGetMethod = <T>(url: string, host?: string) => {
       method: 'GET',
       credentials: 'include',
       redirect: 'error',
+      headers: await getHeaders(context.meta),
     });
 
     await checkResponseErrors(response, context.meta?.redirectToLocationIfUnauthorized);
@@ -152,6 +161,7 @@ export const generateCreateMethod = <T>(url: string, host?: string) => {
       credentials: 'include',
       headers: {
         'Content-Type': 'application/json',
+        ...(await getHeaders(meta)),
       },
       body: JSON.stringify(data),
     });
@@ -177,6 +187,7 @@ export const generateUpdateMethod = <T>(url: string, host?: string) => {
       credentials: 'include',
       headers: {
         'Content-Type': 'application/json',
+        ...(await getHeaders(meta)),
       },
       body: JSON.stringify(data),
     });
@@ -202,6 +213,7 @@ export const generateDeleteMethod = <T>(url: string, host?: string) => {
       credentials: 'include',
       headers: {
         'Content-Type': 'application/json',
+        ...(await getHeaders(meta)),
       },
     });
 
@@ -230,6 +242,7 @@ export const generateFormMethod = <T>(url: string, host?: string) => {
       method: 'POST',
       credentials: 'include',
       body: formData,
+      headers: await getHeaders(meta),
     });
 
     await checkResponseErrors(response, meta?.redirectToLocationIfUnauthorized);
