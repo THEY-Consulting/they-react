@@ -93,9 +93,9 @@ const notUndefinedEntry = <T>(entry: [string, T | undefined]): entry is [string,
 
 const getHeaders = async (meta?: QueryMeta) => {
   if (typeof meta?.headers === 'function') {
-    return await meta?.headers();
+    return (await meta?.headers()) ?? {};
   }
-  return meta?.headers;
+  return meta?.headers ?? {};
 };
 
 /**
