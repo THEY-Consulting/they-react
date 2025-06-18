@@ -23,12 +23,3 @@ export type IconListTheme = {
     backgroundColor?: string;
   };
 };
-
-export type IconListProps = {
-  sources: Source[];
-  title?: string;
-  showHeader?: boolean;
-  maxWidth?: number;
-  maxHeight?: number;
-  theme?: IconListTheme;
-};

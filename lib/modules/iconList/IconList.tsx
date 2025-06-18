@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import { Card, CardContent, CardHeader, List, Paper, Typography } from '@mui/material';
-import { IconListProps } from './types';
+import { IconListTheme, Source } from './types';
 import { IconListListItem } from './IconListListItem.tsx';
 
 const CARD_STYLES = {
@@ -30,8 +30,17 @@ const EMPTY_MESSAGE_STYLES = {
   textAlign: 'center' as const,
 };
 
+type IconListProps = {
+  sources: Source[];
+  title?: string;
+  showHeader?: boolean;
+  maxWidth?: number;
+  maxHeight?: number;
+  theme?: IconListTheme;
+};
+
 export const IconList: React.FC<IconListProps> = React.memo(
-  ({ sources, title = 'Data Sources', showHeader = true, maxWidth = 400, maxHeight = 600, theme }) => {
+  ({ sources, title, maxWidth = 400, maxHeight = 600, theme }) => {
     const paperStyles = useMemo(
       () => ({
         maxWidth,
@@ -80,7 +89,7 @@ export const IconList: React.FC<IconListProps> = React.memo(
     return (
       <Paper elevation={theme?.card?.elevation ?? 8} sx={paperStyles}>
         <Card sx={cardStyles}>
-          {showHeader && (
+          {title && (
             <CardHeader
               title={title}
               slotProps={{
