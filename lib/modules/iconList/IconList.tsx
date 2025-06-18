@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { Card, CardContent, CardHeader, List, Paper, Typography } from '@mui/material';
 import { IconListTheme, Source } from './types';
-import { IconListListItem } from './IconListListItem.tsx';
+import { IconListListItem } from './IconListListItem';
 
 const CARD_STYLES = {
   height: '100%',

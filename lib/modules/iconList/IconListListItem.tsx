@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import { ListItem, ListItemIcon, ListItemText } from '@mui/material';
-import { Source } from './types.ts';
+import { Source } from './types';
 
 const LIST_ITEM_STYLES = {
   paddingY: 1.5,
