@@ -33,7 +33,6 @@ const EMPTY_MESSAGE_STYLES = {
 type IconListProps = {
   sources: Source[];
   title?: string;
-  showHeader?: boolean;
   maxWidth?: number;
   maxHeight?: number;
   theme?: IconListTheme;

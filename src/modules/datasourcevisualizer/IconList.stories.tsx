@@ -28,10 +28,6 @@ const meta = {
     layout: 'centered',
   },
   argTypes: {
-    showHeader: {
-      control: 'boolean',
-      description: 'Show or hide the card header',
-    },
     title: {
       control: 'text',
       description: 'Title of the icon list',
@@ -344,14 +340,12 @@ export const CompactSize: Story = {
 export const WithoutHeader: Story = {
   args: {
     sources: createMocksources(),
-    showHeader: false,
   },
 };
 
 export const HeaderlessWithTheme: Story = {
   args: {
     sources: createAtlasColoredsources(),
-    showHeader: false,
     theme: {
       card: {
         backgroundColor: '#F8F9FA',
