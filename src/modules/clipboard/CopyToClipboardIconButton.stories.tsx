@@ -15,6 +15,7 @@ const meta = {
   args: {
     value: 'Hello, world!',
     hoverMessage: 'Copy to clipboard',
+    progressMessage: 'Copying...',
     successMessage: 'Copied!',
   },
 } satisfies Meta<typeof CopyToClipboardIconButton>;
@@ -57,5 +58,17 @@ export const CustomIcon: Story = {
 export const CustomHover: Story = {
   args: {
     hoverMessage: 'You should copy this!',
+  },
+};
+
+export const AsyncValue: Story = {
+  args: {
+    value: async () => {
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          resolve('This took a while to generate!');
+        }, 2000);
+      });
+    },
   },
 };
