@@ -1,5 +1,5 @@
 import { IconButton, IconButtonProps, SvgIconProps, Tooltip } from '@mui/material';
-import { useCopyToClipboard } from './hooks.ts';
+import { useCopyToClipboard } from './hooks';
 import { ContentCopy as ContentCopyIcon } from '@mui/icons-material';
 import { useMemo } from 'react';
 
