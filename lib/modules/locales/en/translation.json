@@ -1,6 +1,7 @@
 {
   "form": {
     "save": "Save",
+    "cancel": "Cancel",
     "unsavedChanges": "Unsaved changes",
     "metadata": {
       "created": "Created on {{date}} at {{time}} by {{user}}",

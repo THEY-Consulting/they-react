@@ -1,13 +1,18 @@
 import { FieldValues, useController } from 'react-hook-form';
 import { InputAdornment, TextField } from '@mui/material';
 import { combineValidation, getErrorMessage, getRequiredLabel } from './helper';
-import { ChangeEvent, ReactNode, useState } from 'react';
+import { ChangeEvent, ReactNode, useEffect, useState } from 'react';
 import { FormFieldBase } from './types';
 import { useError } from './ErrorProvider';
 import { isNumber } from 'lodash';
 import { useTranslation } from 'react-i18next';
 
 const FORMAT_OPTIONS = { maximumFractionDigits: 20, useGrouping: false };
+const formatToString = (value: string) => {
+  return String(value) === '' || value === null || value === undefined
+    ? ''
+    : Number(value).toLocaleString('de-DE', FORMAT_OPTIONS);
+};
 
 type Props<T extends FieldValues> = FormFieldBase<T> & {
   startAdornment?: ReactNode;
@@ -47,9 +52,13 @@ export const NumberInputField = <T extends FieldValues>({
    * like being unable to insert a period while trying to write a decimal value
    * because the string "17." would be parsed to the number 17 (without period) automatically.
    */
-  const [inputValue, setInputValue] = useState<string>(() =>
-    field.value ? Number(field.value).toLocaleString('de-DE', FORMAT_OPTIONS) : ''
-  );
+  const [inputValue, setInputValue] = useState<string>(() => formatToString(field.value));
+
+  useEffect(() => {
+    if (!Number.isNaN(Number(field.value))) {
+      setInputValue(formatToString(field.value));
+    }
+  }, [field.value]);
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target;

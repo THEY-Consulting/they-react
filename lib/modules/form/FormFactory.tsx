@@ -1,4 +1,4 @@
-import { FormGroup } from './types';
+import { SubmitButtonProps, FormGroup } from './types';
 import { DefaultValues, FieldValues, FormProvider, useForm, WatchObserver } from 'react-hook-form';
 import {
   getDefaultValues,
@@ -7,7 +7,7 @@ import {
   mapFieldGroups,
   resolveDotNotation,
 } from './helper';
-import { useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
 import { useSnackbar } from 'notistack';
 import { debounce, isArray, mergeWith } from 'lodash';
 import { FormWatcher } from './FormWatcher';
@@ -17,7 +17,7 @@ import { Action, AuthSubject } from '../auth/types';
 import { FormSubmit } from './FormSubmit';
 import { Auditable } from '../audit/types';
 import { FormMetadata } from './FormMetaData';
-import { Box, SxProps, Theme, Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import { useCan } from '../auth/hooks';
 import { ErrorProvider, useError } from './ErrorProvider';
 import { I18nextProvider, useTranslation } from 'react-i18next';
@@ -29,6 +29,7 @@ type Props<T extends FieldValues | Partial<AuthSubject>> = {
   fields: FormGroup<T>[];
   onSubmit?: (data: T) => void | Promise<void> | T | Promise<T>;
   onChange?: WatchObserver<T>;
+  onCancel?: () => void;
   required?: boolean;
   disabled?: boolean;
   readonly?: boolean;
@@ -36,10 +37,8 @@ type Props<T extends FieldValues | Partial<AuthSubject>> = {
   displayContents?: boolean;
   action?: Action;
   hideDirtyNotification?: boolean;
-  submitProps?: {
-    sx?: SxProps<Theme>;
-    label?: string;
-  };
+  submitProps?: SubmitButtonProps;
+  cancelProps?: SubmitButtonProps;
 };
 
 const displayContentsSx = { display: 'contents' };
@@ -58,6 +57,7 @@ const InnerFormFactory = <T extends FieldValues & Partial<AuthSubject> & Auditab
   action,
   hideDirtyNotification,
   submitProps,
+  onCancel,
 }: Props<T>) => {
   const { t } = useTranslation();
   const { enqueueSnackbar } = useSnackbar();
@@ -96,6 +96,12 @@ const InnerFormFactory = <T extends FieldValues & Partial<AuthSubject> & Auditab
           },
         }
   );
+
+  useEffect(() => {
+    if (controlled) {
+      form.reset(formData);
+    }
+  }, [controlled, formData, form.reset]);
 
   const handleSubmit = async (data: T) => {
     if (!onSubmit || !allowed) {
@@ -160,7 +166,7 @@ const InnerFormFactory = <T extends FieldValues & Partial<AuthSubject> & Auditab
         )}
         {errorMessage && <Typography color="error">{errorMessage}</Typography>}
         {onSubmit && allowed && (
-          <FormSubmit disabled={disabled} hideDirtyNotification={hideDirtyNotification} {...submitProps} />
+          <FormSubmit disabled={disabled} onCancel={onCancel} hideDirtyNotification={hideDirtyNotification} {...submitProps} />
         )}
         {((formData?.createdAt && formData?.createdBy) || (formData?.editedAt && formData?.editedBy)) && (
           <Box mt={2} textAlign="right">

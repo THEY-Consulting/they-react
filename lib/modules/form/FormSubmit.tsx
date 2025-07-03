@@ -1,16 +1,18 @@
 import { useEffect } from 'react';
 import { FieldValues, useFormState } from 'react-hook-form';
-import { Alert, Box, Button, Slide, SxProps, Theme } from '@mui/material';
+import { Alert, Box, Button, Slide } from '@mui/material';
 import { useTranslation } from 'react-i18next';
+import { SubmitButtonProps } from './types';
 
 type Props = {
   disabled?: boolean;
   hideDirtyNotification?: boolean;
-  sx?: SxProps<Theme>;
-  label?: string;
+  onCancel?: () => void;
+  submitProps?: SubmitButtonProps;
+  cancelProps?: SubmitButtonProps;
 };
 
-export const FormSubmit = <T extends FieldValues>({ disabled, hideDirtyNotification, sx, label }: Props) => {
+export const FormSubmit = <T extends FieldValues>({ disabled, hideDirtyNotification, onCancel, submitProps, cancelProps }: Props) => {
   const { t } = useTranslation();
   const { isDirty, isSubmitting } = useFormState<T>();
 
@@ -44,14 +46,26 @@ export const FormSubmit = <T extends FieldValues>({ disabled, hideDirtyNotificat
   return (
     <>
       <Box textAlign="right">
+        {!onCancel ? null : (
+          <Button
+            color="error"
+            variant="contained"
+            type="submit"
+            disabled={isSubmitting}
+            onClick={onCancel}
+            sx={{ marginRight: 1, ...cancelProps?.sx }}
+          >
+            {cancelProps?.label ?? t('form.cancel')}
+          </Button>
+        )}
         <Button
           color="primary"
           variant="contained"
           type="submit"
           disabled={!!disabled || !isDirty || isSubmitting}
-          sx={sx}
+          sx={submitProps?.sx}
         >
-          {label ?? t('form.save')}
+          {submitProps?.label ?? t('form.save')}
         </Button>
       </Box>
       <Slide direction="up" in={!disabled && isDirty && !hideDirtyNotification} mountOnEnter unmountOnExit>
@@ -81,7 +95,7 @@ export const FormSubmit = <T extends FieldValues>({ disabled, hideDirtyNotificat
                   disabled={isSubmitting}
                   sx={{ marginLeft: 1 }}
                 >
-                  {label ?? t('form.save')}
+                  {submitProps?.label ?? t('form.save')}
                 </Button>
               }
             >
