@@ -12,7 +12,13 @@ type Props = {
   cancelProps?: SubmitButtonProps;
 };
 
-export const FormSubmit = <T extends FieldValues>({ disabled, hideDirtyNotification, onCancel, submitProps, cancelProps }: Props) => {
+export const FormSubmit = <T extends FieldValues>({
+  disabled,
+  hideDirtyNotification,
+  onCancel,
+  submitProps,
+  cancelProps,
+}: Props) => {
   const { t } = useTranslation();
   const { isDirty, isSubmitting } = useFormState<T>();
 
