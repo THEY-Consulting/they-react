@@ -57,6 +57,7 @@ const InnerFormFactory = <T extends FieldValues & Partial<AuthSubject> & Auditab
   action,
   hideDirtyNotification,
   submitProps,
+  cancelProps,
   onCancel,
 }: Props<T>) => {
   const { t } = useTranslation();
@@ -166,7 +167,13 @@ const InnerFormFactory = <T extends FieldValues & Partial<AuthSubject> & Auditab
         )}
         {errorMessage && <Typography color="error">{errorMessage}</Typography>}
         {onSubmit && allowed && (
-          <FormSubmit disabled={disabled} onCancel={onCancel} hideDirtyNotification={hideDirtyNotification} {...submitProps} />
+          <FormSubmit 
+            disabled={disabled}
+            onCancel={onCancel} 
+            hideDirtyNotification={hideDirtyNotification} 
+            submitProps={submitProps} 
+            cancelProps={cancelProps} 
+          />
         )}
         {((formData?.createdAt && formData?.createdBy) || (formData?.editedAt && formData?.editedBy)) && (
           <Box mt={2} textAlign="right">

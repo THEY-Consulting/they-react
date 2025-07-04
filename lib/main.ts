@@ -30,7 +30,7 @@ export { IconList } from './modules/iconList/IconList.tsx';
 export { ErrorBoundary } from './modules/error/ErrorBoundary';
 export { ErrorDisplay } from './modules/error/ErrorDisplay';
 
-export type { FormFields, ErrorResponse, ValidationError } from './modules/form/types';
+export type { FormFields, ErrorResponse, ValidationError, DynamicFormField, FormGroup } from './modules/form/types';
 export { FormFactory } from './modules/form/FormFactory';
 
 export { Progress } from './modules/loading/Progress';
