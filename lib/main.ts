@@ -24,6 +24,9 @@ export { Can } from './modules/auth/Can';
 export { useCopyToClipboard } from './modules/clipboard/hooks';
 export { CopyToClipboardIconButton } from './modules/clipboard/CopyToClipboardIconButton';
 
+export type { Source, IconListTheme } from './modules/iconList/types';
+export { IconList } from './modules/iconList/IconList.tsx';
+
 export { ErrorBoundary } from './modules/error/ErrorBoundary';
 export { ErrorDisplay } from './modules/error/ErrorDisplay';
 
