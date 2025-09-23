@@ -1,7 +1,8 @@
 import { DynamicFormField, FormFieldBase } from './types';
 import { FieldPath, FieldValues, Path, useController, useFieldArray } from 'react-hook-form';
 import { RenderInputField } from './RenderInputField';
-import { Button, FormControl, FormHelperText, Grid, IconButton } from '@mui/material';
+import { Button, FormControl, FormHelperText, IconButton } from '@mui/material';
+import { GridLegacy as Grid } from '@mui/material';
 import { getErrorMessage } from './helper';
 import { Add as AddIcon, Delete as DeleteIcon } from '@mui/icons-material';
 import { Fragment, ReactNode, useCallback, useEffect } from 'react';
