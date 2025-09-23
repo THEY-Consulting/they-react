@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { Grid2 as Grid, Tab, Tabs, Theme, useMediaQuery } from '@mui/material';
+import { Grid, Tab, Tabs, Theme, useMediaQuery } from '@mui/material';
 import { TabPanel } from './TabPanel';
 import { TabItem } from './types';
 import { ErrorBoundary } from '../error/ErrorBoundary';
