@@ -107,34 +107,29 @@ type FormattingTableEntity = {
   price: number;
   since: string;
 };
-export const Formatter: Story = {
+export const Formatter: StoryObj<typeof StickyTable<FormattingTableEntity>> = {
   args: {
     columns: [
-      // @ts-expect-error we change the data structure for this story
       {
         name: 'item',
         label: 'Item',
         format: (value: string) => value.toUpperCase(),
       },
-      // @ts-expect-error we change the data structure for this story
       {
         name: 'date',
         label: 'Date',
         format: formatDateString,
       },
-      // @ts-expect-error we change the data structure for this story
       {
         name: 'price',
         label: 'Price',
         format: formatCurrency,
       },
-      // @ts-expect-error we change the data structure for this story
       {
         name: 'since',
         label: 'Since',
         format: formatDateTimeString,
       },
-      // @ts-expect-error we change the data structure for this story
       {
         name: 'item',
         label: 'Combined',
@@ -153,6 +148,75 @@ export const Formatter: Story = {
         date: formatISO(new Date()),
         price: 2.345,
         since: formatISO(new Date()),
+      },
+    ],
+  },
+};
+
+type SortableTableEntity = {
+  name: string;
+  age: number;
+  score: number;
+  date: string;
+};
+
+export const WithSorting: StoryObj<typeof StickyTable<SortableTableEntity>> = {
+  args: {
+    columns: [
+      {
+        name: 'name',
+        label: 'Name',
+        sortable: true,
+      },
+      {
+        name: 'age',
+        label: 'Age',
+        sortable: true,
+      },
+      {
+        name: 'score',
+        label: 'Score',
+        sortable: true,
+        // Custom sort function for descending score by default
+        sortFunction: (a: number, b: number) => b - a,
+      },
+      {
+        name: 'date',
+        label: 'Date',
+        sortable: true,
+        format: formatDateString,
+      },
+    ],
+    data: [
+      {
+        name: 'Alice Johnson',
+        age: 28,
+        score: 95,
+        date: '2024-01-15',
+      },
+      {
+        name: 'Bob Smith',
+        age: 34,
+        score: 87,
+        date: '2024-02-20',
+      },
+      {
+        name: 'Charlie Brown',
+        age: 22,
+        score: 92,
+        date: '2024-01-10',
+      },
+      {
+        name: 'Diana Prince',
+        age: 31,
+        score: 98,
+        date: '2024-03-05',
+      },
+      {
+        name: 'Edward Norton',
+        age: 29,
+        score: 89,
+        date: '2024-02-28',
       },
     ],
   },

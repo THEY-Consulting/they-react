@@ -6,19 +6,29 @@ export const formatCurrency = (value: number, t: TFunction): string => {
 
 export const formatDateString = (value: string, t: TFunction) => {
   try {
-    return t('format.date', { value: new Date(value) });
-  } catch {
-    console.error(`Could not format date: ${value}`);
-    return '';
+    const date = new Date(value);
+    if (isNaN(date.getTime())) {
+      console.error(`Invalid date string: ${value}`);
+      return value; // Return original value if invalid
+    }
+    return t('format.date', { date });
+  } catch (error) {
+    console.error(`Could not format date: ${value}`, error);
+    return value; // Return original value on error
   }
 };
 
 export const formatTimeString = (value: string, t: TFunction) => {
   try {
-    return t('format.time', { value: new Date(value) });
-  } catch {
-    console.error(`Could not format time: ${value}`);
-    return '';
+    const date = new Date(value);
+    if (isNaN(date.getTime())) {
+      console.error(`Invalid time string: ${value}`);
+      return value;
+    }
+    return t('format.time', { date });
+  } catch (error) {
+    console.error(`Could not format time: ${value}`, error);
+    return value;
   }
 };
 
