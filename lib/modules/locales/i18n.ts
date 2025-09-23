@@ -10,20 +10,41 @@ export const i18nTheyReact: i18n = createInstance({
   interpolation: {
     escapeValue: false, // not needed for react as it escapes by default
     format: (value, format, lng) => {
-      if (format === 'datetime' && value instanceof Date) {
-        return value.toLocaleDateString(lng);
+      // Date/time formatting: {{date, datetime(...)}}
+      if ((format === 'datetime' || format?.startsWith('datetime(')) && value instanceof Date) {
+        // Parse options inside datetime(...)
+        const options: Intl.DateTimeFormatOptions = {};
+        const match = format?.match(/datetime\((.*)\)/);
+        if (match?.[1]) {
+          // Example: "year: numeric; month: numeric; day: numeric; hour: numeric; minute: numeric"
+          match[1]
+            .split(';')
+            .map((s) => s.trim())
+            .filter(Boolean)
+            .forEach((pair) => {
+              const [k, v] = pair.split(':').map((s) => s.trim());
+              if (!k || !v) return;
+              // Map to valid Intl options
+              const key = k as keyof Intl.DateTimeFormatOptions;
+              const val = v.replace(/,$/, '') as any;
+              (options as any)[key] = val;
+            });
+        }
+        // If no options given, default to date+time
+        const hasAny = Object.keys(options).length > 0;
+        const fmt = new Intl.DateTimeFormat(lng, hasAny ? options : { year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric' });
+        return fmt.format(value);
       }
-      if (format?.startsWith('datetime(') && value instanceof Date) {
-        // Simple datetime formatting - could be enhanced with more options
-        return value.toLocaleDateString(lng);
-      }
+
+      // Currency formatting: {{value, currency(USD)}}
       if (format?.startsWith('currency(') && typeof value === 'number') {
         const currency = format.match(/currency\(([^)]+)\)/)?.[1] || 'USD';
         return new Intl.NumberFormat(lng, {
           style: 'currency',
-          currency: currency,
+          currency,
         }).format(value);
       }
+
       return value;
     },
   },
