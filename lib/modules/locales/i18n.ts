@@ -32,7 +32,12 @@ export const i18nTheyReact: i18n = createInstance({
         }
         // If no options given, default to date+time
         const hasAny = Object.keys(options).length > 0;
-        const fmt = new Intl.DateTimeFormat(lng, hasAny ? options : { year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric' });
+        const fmt = new Intl.DateTimeFormat(
+          lng,
+          hasAny
+            ? options
+            : { year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric' }
+        );
         return fmt.format(value);
       }
 
