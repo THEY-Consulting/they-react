@@ -26,8 +26,8 @@ export const i18nTheyReact: i18n = createInstance({
               if (!k || !v) return;
               // Map to valid Intl options
               const key = k as keyof Intl.DateTimeFormatOptions;
-              const val = v.replace(/,$/, '') as any;
-              (options as any)[key] = val;
+              const val = v.replace(/,$/, '') as unknown;
+              (options as Record<string, unknown>)[key as string] = val;
             });
         }
         // If no options given, default to date+time
