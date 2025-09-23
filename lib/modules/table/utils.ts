@@ -22,10 +22,7 @@ export const formatValue = <T, P extends Path<T>>(
   return (format ? format(value, t, row) : value.toString()) || (empty ?? '-');
 };
 
-const defaultSortFunction = <T, P extends Path<T>>(
-  a: PathValue<T, P>,
-  b: PathValue<T, P>
-): number => {
+const defaultSortFunction = <T, P extends Path<T>>(a: PathValue<T, P>, b: PathValue<T, P>): number => {
   // Handle null/undefined values
   if (a === null || a === undefined) return b === null || b === undefined ? 0 : 1;
   if (b === null || b === undefined) return -1;
@@ -60,16 +57,12 @@ const defaultSortFunction = <T, P extends Path<T>>(
   return String(a).localeCompare(String(b));
 };
 
-export const sortData = <T>(
-  data: T[],
-  columns: TableColumns<T>,
-  sortState: SortState<T>
-): T[] => {
+export const sortData = <T>(data: T[], columns: TableColumns<T>, sortState: SortState<T>): T[] => {
   if (!sortState.column) {
     return data;
   }
 
-  const column = columns.find(col => col.name === sortState.column);
+  const column = columns.find((col) => col.name === sortState.column);
   if (!column) {
     return data;
   }

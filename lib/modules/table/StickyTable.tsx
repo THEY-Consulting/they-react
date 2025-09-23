@@ -59,7 +59,7 @@ export const StickyTable = <T,>({
   };
 
   const handleSort = (column: Path<T>) => {
-    setSortState(prevState => {
+    setSortState((prevState) => {
       if (prevState.column === column) {
         // Toggle direction if same column
         return {

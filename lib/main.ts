@@ -38,7 +38,13 @@ export { Progress } from './modules/loading/Progress';
 export { i18nTheyReact } from './modules/locales/i18n.ts';
 
 export { formatCurrency, formatDateString, formatDateTimeString } from './modules/table/formatters';
-export type { TableColumns, TableColumn, TableColumnSortFunction, SortState, SortDirection } from './modules/table/types';
+export type {
+  TableColumns,
+  TableColumn,
+  TableColumnSortFunction,
+  SortState,
+  SortDirection,
+} from './modules/table/types';
 export { StickyTable } from './modules/table/StickyTable';
 
 export type { Tabs } from './modules/tabs/types';
