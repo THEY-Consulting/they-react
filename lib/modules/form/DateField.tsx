@@ -69,8 +69,8 @@ export const DateField = <T extends FieldValues>({
           fullWidth: true,
           size,
         },
-        actionBar: ({ wrapperVariant }) => ({
-          actions: wrapperVariant === 'desktop' ? ['clear'] : ['clear', 'cancel', 'accept'],
+        actionBar: () => ({
+          actions: ['clear', 'cancel', 'accept'],
         }),
       }}
     />

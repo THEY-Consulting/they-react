@@ -1,4 +1,5 @@
-import { FormLabel, Grid, SxProps, Theme, Typography } from '@mui/material';
+import { FormLabel, SxProps, Theme, Typography } from '@mui/material';
+import { GridLegacy as Grid } from '@mui/material';
 import { FieldValues } from 'react-hook-form';
 import { RenderInputField } from './RenderInputField';
 import { FormGroup } from './types';
