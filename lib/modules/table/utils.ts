@@ -1,6 +1,6 @@
 import { Path, PathValue } from 'react-hook-form';
 import { get } from 'lodash';
-import { TableColumnFormatter, TableColumns, SortState, SortDirection } from './types';
+import { TableColumnFormatter, TableColumns, SortState } from './types';
 import { ReactNode } from 'react';
 import { TFunction } from 'i18next';
 
