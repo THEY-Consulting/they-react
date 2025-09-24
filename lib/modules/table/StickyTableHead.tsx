@@ -13,11 +13,6 @@ type Props<T> = {
 };
 
 export const StickyTableHead = <T,>({ columns, onAdd, extraCol, sortState, onSort }: Props<T>) => {
-  const handleSort = (column: Path<T>) => {
-    if (onSort) {
-      onSort(column);
-    }
-  };
 
   return (
     <TableHead>
@@ -37,7 +32,7 @@ export const StickyTableHead = <T,>({ columns, onAdd, extraCol, sortState, onSor
                 <TableSortLabel
                   active={isActive}
                   direction={direction || 'asc'}
-                  onClick={() => handleSort(column.name)}
+                  onClick={() => onSort(column.name)}
                   sx={{
                     color: 'inherit !important',
                     '& .MuiTableSortLabel-icon': {
