@@ -40,10 +40,7 @@ export { i18nTheyReact } from './modules/locales/i18n.ts';
 export { formatCurrency, formatDateString, formatDateTimeString } from './modules/table/formatters';
 export type {
   TableColumns,
-  TableColumn,
   TableColumnSortFunction,
-  SortState,
-  SortDirection,
 } from './modules/table/types';
 export { StickyTable } from './modules/table/StickyTable';
 
