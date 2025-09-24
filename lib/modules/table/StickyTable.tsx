@@ -3,7 +3,7 @@ import { TableColumns, SortState } from './types';
 import { Progress } from '../loading/Progress';
 import { StickyTableHead } from './StickyTableHead';
 import { StickyTableBody } from './StickyTableBody';
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { useCan } from '../auth/hooks';
 import { i18nTheyReact } from '../locales/i18n';
 import { I18nextProvider } from 'react-i18next';
@@ -79,7 +79,9 @@ export const StickyTable = <T,>({
   };
 
   // Sort the data before pagination
-  const sortedData = sortData(data, columns, sortState);
+  const sortedData = useMemo(() => {
+    return sortData(data, columns, sortState);
+  }, [data, columns, sortState]);
 
   if (error) {
     return (
