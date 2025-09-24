@@ -13,7 +13,6 @@ type Props<T> = {
 };
 
 export const StickyTableHead = <T,>({ columns, onAdd, extraCol, sortState, onSort }: Props<T>) => {
-
   return (
     <TableHead>
       <TableRow>
