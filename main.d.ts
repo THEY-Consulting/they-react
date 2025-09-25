@@ -18,7 +18,7 @@ export { FormFactory } from './modules/form/FormFactory';
 export { Progress } from './modules/loading/Progress';
 export { i18nTheyReact } from './modules/locales/i18n.ts';
 export { formatCurrency, formatDateString, formatDateTimeString } from './modules/table/formatters';
-export type { TableColumns } from './modules/table/types';
+export type { TableColumns, TableColumnSortFunction } from './modules/table/types';
 export { StickyTable } from './modules/table/StickyTable';
 export type { Tabs } from './modules/tabs/types';
 export { TabsView } from './modules/tabs/TabsView';
