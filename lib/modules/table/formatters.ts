@@ -6,7 +6,7 @@ export const formatCurrency = (value: number, t: TFunction): string => {
 
 export const formatDateString = (value: string, t: TFunction) => {
   try {
-    return t('format.date', { value: new Date(value) });
+    return t('format.date', { date: new Date(value) });
   } catch {
     console.error(`Could not format date: ${value}`);
     return '';
@@ -15,7 +15,7 @@ export const formatDateString = (value: string, t: TFunction) => {
 
 export const formatTimeString = (value: string, t: TFunction) => {
   try {
-    return t('format.time', { value: new Date(value) });
+    return t('format.time', { date: new Date(value) });
   } catch {
     console.error(`Could not format time: ${value}`);
     return '';

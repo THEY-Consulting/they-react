@@ -8,6 +8,13 @@ export type TableColumnFormatter<T, P extends Path<T>> = (
   data: T
 ) => ReactNode;
 
+export type TableColumnSortFunction<T, P extends Path<T>> = (
+  a: PathValue<T, P>,
+  b: PathValue<T, P>,
+  aRow: T,
+  bRow: T
+) => number;
+
 export type TableColumn<T, P extends Path<T>> = {
   key?: string;
   name: P;
@@ -16,8 +23,17 @@ export type TableColumn<T, P extends Path<T>> = {
   align?: 'left' | 'right' | 'center';
   format?: TableColumnFormatter<T, P>;
   empty?: ReactNode;
+  sortable?: boolean;
+  sortFunction?: TableColumnSortFunction<T, P>;
 };
 
 export type TableColumns<T> = {
   [K in Path<T>]: TableColumn<T, K>;
 }[Path<T>][];
+
+export type SortDirection = 'asc' | 'desc';
+
+export type SortState<T> = {
+  column: Path<T> | null;
+  direction: SortDirection;
+};
