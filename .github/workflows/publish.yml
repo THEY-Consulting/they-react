@@ -2,6 +2,9 @@ name: Publish Package to npmjs
 on:
   release:
     types: [published]
+  push:
+    branches:
+      - feature/OIDC-publish
 
 permissions:
   id-token: write # Required for OIDC
@@ -23,4 +26,14 @@ jobs:
 
       - run: npm clean-install
 
-      - run: npm publish --access public
+      - name: Debug npm authentication
+        run: |
+          echo "Checking npm authentication..."
+          npm whoami || echo "npm whoami failed"
+          npm config get registry
+          npm config list
+
+      - name: Dry run publish
+        run: npm publish --access public --dry-run
+
+#      - run: npm publish --access public
