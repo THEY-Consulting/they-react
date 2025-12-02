@@ -5,6 +5,7 @@ import {
   AutocompleteRenderOptionState,
   FilterOptionsState,
   SxProps,
+  Theme,
 } from '@mui/material';
 
 type InputFieldOptionItem<T> = {
@@ -125,6 +126,11 @@ export type DynamicFormField<T extends FieldValues> =
       newEntry?: T[FieldPath<T>];
       getLabel?: (index: number, name: string) => ReactNode;
       marginBottom?: number;
+    })
+  | (FormFieldBase<T> & {
+      type: 'upload';
+      accept?: string;
+      onFileNameChange?: (fileName: string) => void;
     });
 
 export type FormGroup<T extends FieldValues> = {
@@ -150,4 +156,9 @@ export type ErrorResponse = {
   code: string;
   message: string;
   details: ValidationError[] | string;
+};
+
+export type SubmitButtonProps = {
+  sx?: SxProps<Theme>;
+  label?: string;
 };

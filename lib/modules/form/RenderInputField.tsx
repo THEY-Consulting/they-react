@@ -18,6 +18,7 @@ import { DividerLabel } from './DividerLabel';
 import { AutocompleteOwnerState, AutocompleteRenderOptionState, FilterOptionsState } from '@mui/material';
 import { UrlInputField } from './UrlInputField';
 import { PasswordInputField } from './PasswordInputField';
+import UploadButton from './UploadButton';
 
 type BaseFieldProps<T extends FieldValues> = FormFieldBase<T>;
 type Props<T extends FieldValues> =
@@ -88,6 +89,11 @@ type Props<T extends FieldValues> =
       newEntry?: T[FieldPath<T>];
       getLabel?: (index: number, name: string) => ReactNode;
       marginBottom?: number;
+    })
+  | (FormFieldBase<T> & {
+      type: 'upload';
+      accept?: string;
+      onFileNameChange?: (fileName: string) => void;
     });
 
 export const RenderInputField = <T extends FieldValues>(props: Props<T>) => {
@@ -278,6 +284,16 @@ export const RenderInputField = <T extends FieldValues>(props: Props<T>) => {
           marginBottom={props.marginBottom}
           disabled={disabled}
           readonly={readonly}
+        />
+      );
+    case 'upload':
+      return (
+        <UploadButton
+          name={name}
+          disabled={disabled}
+          rules={rules}
+          accept={props.accept}
+          onFileNameChange={props.onFileNameChange}
         />
       );
     default:
