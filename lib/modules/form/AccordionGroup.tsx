@@ -1,8 +1,10 @@
 import { Accordion, AccordionDetails, AccordionSummary, Button, FormLabel, Typography } from '@mui/material';
 import { ExpandMore as ExpandMoreIcon } from '@mui/icons-material';
-import { FieldValues } from 'react-hook-form';
+import { FieldValues, useFormState } from 'react-hook-form';
 import { FormGroup } from './types';
 import { DefaultGroup } from './DefaultGroup';
+import { useState, useCallback, useEffect } from 'react';
+import { useError } from './ErrorProvider';
 
 export type AccordionGroupProps<T extends FieldValues> = {
   group: FormGroup<T>;
@@ -15,8 +17,30 @@ export const AccordionGroup = <T extends FieldValues>({
   disabled,
   readonly,
 }: AccordionGroupProps<T>) => {
+  const { errors: backendErrors } = useError();
+  const { errors: frontendErrors } = useFormState<T>();
+  const [isExpanded, setIsExpanded] = useState(Boolean(group.expanded));
+
+  const fieldNames = group.fields.map((field) => field.name);
+  const hasFrontendErrors = Object.keys(frontendErrors).some((key) =>
+    fieldNames.some((name) => name.includes(key))
+  );
+
+  const hasBackendErrors = backendErrors.some((error) => fieldNames.some((name) => name === error.path));
+
+  const hasErrors = hasBackendErrors || hasFrontendErrors;
+  const toggleIsOpen = useCallback(() => {
+    setIsExpanded((wasExpanded) => !wasExpanded || hasErrors);
+  }, [hasErrors]);
+
+  useEffect(() => {
+    setIsExpanded((isExpanded) => isExpanded || hasErrors);
+  }, [hasErrors]);
+
   return (
     <Accordion
+      expanded={isExpanded}
+      onChange={toggleIsOpen}
       disableGutters
       sx={{
         marginLeft: -2, // offset paper padding
