@@ -2,9 +2,6 @@ name: Publish Package to npmjs
 on:
   release:
     types: [published]
-  push:
-    branches:
-      - feature/OIDC-publish
 
 permissions:
   id-token: write # Required for OIDC
@@ -13,9 +10,6 @@ permissions:
 jobs:
   publish:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      id-token: write
     steps:
       - uses: actions/checkout@v4
 
@@ -26,22 +20,6 @@ jobs:
 
       - run: npm clean-install
 
-      - name: Debug OIDC token
-        run: |
-          echo "OIDC Token payload (base64 decoded):"
-          echo $NODE_AUTH_TOKEN | cut -d'.' -f2 | base64 -d 2>/dev/null | jq . || echo "Failed to decode token"
-          echo "Repository: $GITHUB_REPOSITORY"
-          echo "Ref: $GITHUB_REF"
-          echo "Workflow: $GITHUB_WORKFLOW"        
+      - run: npm run build
 
-      - name: Debug npm authentication
-        run: |
-          echo "Checking npm authentication..."
-          npm whoami || echo "npm whoami failed"
-          npm config get registry
-          npm config list
-
-      - name: Dry run publish
-        run: npm publish --access public --dry-run
-
-#      - run: npm publish --access public
+      - run: npm publish --access public
