@@ -13,10 +13,15 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with:
-          node-version: '20.x'
+          node-version-file: '.nvmrc'
           registry-url: 'https://registry.npmjs.org'
+
+      - name: check versions
+        run: |
+          node --version
+          npm --version
 
       - run: npm clean-install
 
