@@ -52,7 +52,7 @@ export const SelectButtonField = <T extends FieldValues>({
           {getRequiredLabel(label, !!rules?.required, disabled || readonly)}
         </InputLabel>
       )}
-      <Stack direction="row" alignItems="center" spacing={spacing ?? 2} flexWrap="wrap">
+      <Stack direction="row" alignItems="center" sx={{ gap: spacing ?? 2 }} flexWrap="wrap">
         {options.map((option) =>
           isOptionGroup(option) ? null : (
             <Button

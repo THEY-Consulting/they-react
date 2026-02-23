@@ -8,11 +8,8 @@ permissions:
   contents: read
 
 jobs:
-  build:
+  publish:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      id-token: write
     steps:
       - uses: actions/checkout@v4
 
@@ -22,5 +19,7 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
 
       - run: npm clean-install
+
+      - run: npm run build
 
       - run: npm publish --access public
