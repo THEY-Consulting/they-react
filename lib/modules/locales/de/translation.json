@@ -1,6 +1,7 @@
 {
   "form": {
     "save": "Speichern",
+    "cancel": "Abbrechen",
     "unsavedChanges": "Ungespeicherte Änderungen",
     "metadata": {
       "created": "Erstellt am {{date}} um {{time}} Uhr von {{user}}",
